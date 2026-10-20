@@ -10,18 +10,89 @@
 
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <!-- Google Fonts: Playfair Display + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* ============================================================
-       RESET & BASE
-       ============================================================ */
-    *,
-    *::before,
-    *::after {
+    /* ==========================================================================
+       01. CSS VARIABLES & DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      /* -- Color Palette (Monochrome) -- */
+      --color-black: #000000;
+      --color-dark: #121212;
+      --color-charcoal: #1e1e1e;
+      --color-gray-900: #2d2d2d;
+      --color-gray-800: #3a3a3a;
+      --color-gray-700: #4a4a4a;
+      --color-gray-600: #666666;
+      --color-gray-500: #808080;
+      --color-gray-400: #999999;
+      --color-gray-300: #b3b3b3;
+      --color-gray-200: #cccccc;
+      --color-gray-100: #e6e6e6;
+      --color-light: #f5f5f5;
+      --color-off-white: #fafafa;
+      --color-white: #ffffff;
+      
+      /* -- Typography -- */
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      
+      /* -- Spacing -- */
+      --space-2xs: 0.25rem;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+      
+      /* -- Layout -- */
+      --container-max: 1200px;
+      --container-narrow: 800px;
+      --header-height: 80px;
+      
+      /* -- Transitions & Easing -- */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.4s var(--ease-out-expo);
+      --transition-slow: 0.8s var(--ease-out-expo);
+      
+      /* -- Shadows -- */
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --shadow-xl: 0 24px 64px rgba(0,0,0,0.16);
+      --shadow-inner: inset 0 2px 4px rgba(0,0,0,0.06);
+      
+      /* -- Border Radius -- */
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 32px;
+      --radius-full: 9999px;
+      
+      /* -- Z-Index Hierarchy -- */
+      --z-negative: -1;
+      --z-base: 1;
+      --z-dropdown: 10;
+      --z-sticky: 100;
+      --z-header: 1000;
+      --z-modal: 5000;
+      --z-loader: 9999;
+    }
+
+    /* ==========================================================================
+       02. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -30,259 +101,688 @@
     html {
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
-    }
-
-    :root {
-      /* WordPress-inspired palette */
-      --wp-black: #1d2327;
-      --wp-dark: #2c3338;
-      --wp-gray: #50575e;
-      --wp-gray-light: #787c82;
-      --wp-light: #f6f7f7;
-      --wp-white: #ffffff;
-      --wp-border: #dcdcde;
-      --wp-border-light: #f0f0f1;
-      --wp-accent: #2271b1;
-      --wp-accent-hover: #135e96;
-      --wp-gold: #b8860b;
-      --wp-gold-light: #d4a017;
-
-      /* Typography */
-      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-
-      /* Spacing */
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2.5rem;
-      --space-xl: 4rem;
-      --space-xxl: 6rem;
-
-      /* Container */
-      --container-max: 1200px;
-      --container-narrow: 860px;
-
-      /* Transitions */
-      --transition-fast: 0.2s ease;
-      --transition-base: 0.3s ease;
-      --transition-slow: 0.5s ease;
-
-      /* Shadows */
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-      --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
-      --shadow-xl: 0 24px 48px rgba(0,0,0,0.16);
-
-      /* Border radius */
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 16px;
-      --radius-full: 9999px;
+      -ms-text-size-adjust: 100%;
+      font-size: 16px;
     }
 
     body {
       font-family: var(--font-body);
-      font-size: 16px;
       font-weight: 400;
       line-height: 1.7;
-      color: var(--wp-gray);
-      background-color: var(--wp-white);
+      color: var(--color-gray-600);
+      background-color: var(--color-white);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.loading {
+      overflow: hidden;
     }
 
     h1, h2, h3, h4, h5, h6 {
       font-family: var(--font-heading);
       font-weight: 700;
-      line-height: 1.25;
-      color: var(--wp-black);
+      line-height: 1.2;
+      color: var(--color-black);
       letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
     }
 
-    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
-    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
-    h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
-    h4 { font-size: 1.2rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+    h2 { font-size: clamp(2rem, 5vw, 3rem); }
+    h3 { font-size: clamp(1.5rem, 4vw, 2rem); }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1rem; }
+    h6 { font-size: 0.875rem; }
 
-    p { margin-bottom: 1rem; }
-    a { color: var(--wp-accent); text-decoration: none; transition: color var(--transition-fast); }
-    a:hover { color: var(--wp-accent-hover); }
-    img { max-width: 100%; height: auto; display: block; }
-    ul, ol { list-style: none; }
-    button { font-family: inherit; cursor: pointer; }
-
-    /* ============================================================
-       UTILITY CLASSES
-       ============================================================ */
-    .container {
-      max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-    .container-narrow {
-      max-width: var(--container-narrow);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-    .text-center { text-align: center; }
-    .text-left { text-align: left; }
-    .text-right { text-align: right; }
-    .mb-0 { margin-bottom: 0; }
-    .mb-1 { margin-bottom: var(--space-sm); }
-    .mb-2 { margin-bottom: var(--space-md); }
-    .mb-3 { margin-bottom: var(--space-lg); }
-    .mt-0 { margin-top: 0; }
-    .mt-1 { margin-top: var(--space-sm); }
-    .mt-2 { margin-top: var(--space-md); }
-    .mt-3 { margin-top: var(--space-lg); }
-
-    .section {
-      padding: var(--space-xxl) 0;
-    }
-    .section-sm {
-      padding: var(--space-xl) 0;
-    }
-    .section-alt {
-      background-color: var(--wp-light);
-    }
-    .section-dark {
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-    }
-    .section-dark h1,
-    .section-dark h2,
-    .section-dark h3,
-    .section-dark h4 {
-      color: var(--wp-white);
+    p {
+      margin-bottom: var(--space-sm);
     }
 
-    .section-label {
-      display: inline-block;
-      font-family: var(--font-body);
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-style: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    input, textarea, select {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    /* Selection Color */
+    ::selection {
+      background-color: var(--color-black);
+      color: var(--color-white);
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-light);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-gray-400);
+      border-radius: var(--radius-full);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-black);
+    }
+
+    /* Focus Outline */
+    *:focus-visible {
+      outline: 2px solid var(--color-black);
+      outline-offset: 4px;
+    }
+
+    /* ==========================================================================
+       03. LOADING SCREEN & SKELETON SHIMMER
+       ========================================================================== */
+    .loader-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-loader);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-white);
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loader-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Curtain Effect (CSS Murni) */
+    .loader-curtain {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      z-index: -1;
+    }
+
+    .curtain-left, .curtain-right {
+      width: 50%;
+      height: 100%;
+      background-color: var(--color-black);
+      transition: transform 1.2s var(--ease-in-out-circ);
+    }
+
+    .curtain-left { transform-origin: left; }
+    .curtain-right { transform-origin: right; }
+
+    .loader-overlay.hidden .curtain-left {
+      transform: scaleX(0);
+    }
+    .loader-overlay.hidden .curtain-right {
+      transform: scaleX(0);
+    }
+
+    /* Loader Content */
+    .loader-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      transition: transform var(--transition-slow), opacity var(--transition-base);
+    }
+
+    .loader-overlay.hidden .loader-content {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+
+    .loader-logo {
+      height: 80px;
+      width: auto;
+      animation: pulseLogo 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseLogo {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    /* Skeleton Shimmer (Murni CSS) */
+    .skeleton-shimmer {
+      width: 200px;
+      height: 4px;
+      background-color: var(--color-gray-200);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skeleton-shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--color-white) 50%,
+        transparent 100%
+      );
+      transform: translateX(-100%);
+      animation: shimmerEffect 1.5s infinite;
+    }
+
+    @keyframes shimmerEffect {
+      100% { transform: translateX(100%); }
+    }
+
+    .loader-text {
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--wp-gold);
-      margin-bottom: var(--space-sm);
+      color: var(--color-gray-400);
+      animation: pulseText 1.5s infinite;
     }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* Skeleton Loading Content (Page Transition) */
+    .skeleton-layout {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-loader);
+      background: var(--color-white);
+      padding: calc(var(--header-height) + var(--space-2xl)) var(--space-md) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .skeleton-layout.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .skeleton-block {
+      background: var(--color-light);
+      border-radius: var(--radius-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skeleton-block::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transform: translateX(-100%);
+      animation: shimmerEffect 1.5s infinite;
+    }
+
+    .sk-hero {
+      height: 60vh;
+      width: 100%;
+      background: var(--color-gray-900);
+    }
+
+    .sk-title {
+      height: 40px;
+      width: 50%;
+      margin: var(--space-lg) auto var(--space-sm);
+    }
+
+    .sk-text {
+      height: 20px;
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .sk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .sk-card {
+      height: 200px;
+      border-radius: var(--radius-md);
+    }
+
+    /* ==========================================================================
+       04. UTILITY CLASSES
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--space-md);
+      padding-right: var(--space-md);
+    }
+
+    .container-narrow {
+      max-width: var(--container-narrow);
+    }
+
+    .section {
+      padding-top: var(--space-3xl);
+      padding-bottom: var(--space-3xl);
+      position: relative;
+    }
+
+    .section-alt {
+      background-color: var(--color-light);
+    }
+
+    .section-dark {
+      background-color: var(--color-black);
+      color: var(--color-gray-300);
+    }
+
+    .section-dark h1,
+    .section-dark h2,
+    .section-dark h3 {
+      color: var(--color-white);
+    }
+
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: var(--space-sm); }
+    .mb-2 { margin-bottom: var(--space-md); }
+    .mb-3 { margin-bottom: var(--space-lg); }
+    .mb-4 { margin-bottom: var(--space-xl); }
+
+    .mt-0 { margin-top: 0; }
+    .mt-1 { margin-top: var(--space-sm); }
+    .mt-2 { margin-top: var(--space-md); }
+    .mt-3 { margin-top: var(--space-lg); }
+    .mt-4 { margin-top: var(--space-xl); }
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .flex-wrap { flex-wrap: wrap; }
+    .gap-1 { gap: var(--space-sm); }
+    .gap-2 { gap: var(--space-md); }
+    .gap-3 { gap: var(--space-lg); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    /* Section Headers */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gray-600);
+      padding: 6px 16px;
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-md);
+      background-color: var(--color-white);
+      transition: all var(--transition-base);
+    }
+
+    .section-label:hover {
+      border-color: var(--color-black);
+      color: var(--color-black);
+    }
+
+    .section-dark .section-label {
+      background-color: var(--color-charcoal);
+      border-color: var(--color-gray-800);
+      color: var(--color-gray-300);
+    }
+
     .section-title {
       margin-bottom: var(--space-sm);
+      position: relative;
     }
+
     .section-subtitle {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 400;
-      color: var(--wp-gray);
-      max-width: 640px;
-      margin: 0 auto var(--space-lg);
+      color: var(--color-gray-600);
+      max-width: 650px;
+      margin: 0 auto var(--space-xl);
+      line-height: 1.8;
     }
+
     .section-dark .section-subtitle {
-      color: #a7aaad;
+      color: var(--color-gray-400);
     }
 
     .divider {
       width: 60px;
       height: 3px;
-      background: var(--wp-gold);
+      background-color: var(--color-black);
       margin: var(--space-md) auto;
+      border-radius: var(--radius-full);
     }
+
     .divider-left {
       margin-left: 0;
     }
 
-    /* ============================================================
-       BUTTONS
-       ============================================================ */
+    /* ==========================================================================
+       05. ANIMATIONS & KEYFRAMES (Pure CSS)
+       ========================================================================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    @keyframes shine {
+      100% { left: 125%; }
+    }
+
+    @keyframes progressBar {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    /* Scroll Reveal Classes (Triggered via JS IntersectionObserver) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    }
+
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    }
+
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-zoom {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    }
+
+    .reveal-zoom.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Animation Delays */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .delay-400 { transition-delay: 0.4s; }
+    .delay-500 { transition-delay: 0.5s; }
+    .delay-600 { transition-delay: 0.6s; }
+
+    /* ==========================================================================
+       06. BUTTONS (Premium Monochrome)
+       ========================================================================== */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      padding: 0.875rem 2rem;
+      gap: var(--space-xs);
+      padding: 14px 32px;
       font-family: var(--font-body);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       border: 2px solid transparent;
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-base);
+      border-radius: var(--radius-full);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: var(--z-base);
+      transition: all var(--transition-base);
       white-space: nowrap;
-    }
-    .btn-primary {
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-      border-color: var(--wp-black);
-    }
-    .btn-primary:hover {
-      background-color: var(--wp-gold);
-      border-color: var(--wp-gold);
-      color: var(--wp-white);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .btn-outline {
-      background-color: transparent;
-      color: var(--wp-black);
-      border-color: var(--wp-black);
-    }
-    .btn-outline:hover {
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-      transform: translateY(-2px);
-    }
-    .btn-outline-light {
-      background-color: transparent;
-      color: var(--wp-white);
-      border-color: var(--wp-white);
-    }
-    .btn-outline-light:hover {
-      background-color: var(--wp-white);
-      color: var(--wp-black);
-      transform: translateY(-2px);
-    }
-    .btn-gold {
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
-      border-color: var(--wp-gold);
-    }
-    .btn-gold:hover {
-      background-color: var(--wp-gold-light);
-      border-color: var(--wp-gold-light);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .btn-sm {
-      padding: 0.6rem 1.4rem;
-      font-size: 0.8rem;
-    }
-    .btn-lg {
-      padding: 1.1rem 2.6rem;
-      font-size: 1rem;
+      user-select: none;
     }
 
-    /* ============================================================
-       NAVBAR
-       ============================================================ */
+    /* Shine Effect on Hover */
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: left 0.6s ease;
+      z-index: var(--z-negative);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    /* Button Variants */
+    .btn-primary {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      border-color: var(--color-black);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-white);
+      color: var(--color-black);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-black);
+      border-color: var(--color-black);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-outline-light {
+      background-color: transparent;
+      color: var(--color-white);
+      border-color: var(--color-white);
+    }
+
+    .btn-outline-light:hover {
+      background-color: var(--color-white);
+      color: var(--color-black);
+      transform: translateY(-2px);
+    }
+
+    /* Special Reservation Button */
+    .btn-reservation {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      padding: 10px 24px;
+      font-size: 0.8rem;
+      border: 2px solid var(--color-black);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .btn-reservation::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn-reservation:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-reservation:hover {
+      background-color: var(--color-gray-900);
+      border-color: var(--color-gray-900);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-reservation i {
+      transition: transform var(--transition-base);
+    }
+
+    .btn-reservation:hover i {
+      transform: translateX(4px);
+    }
+
+    /* Button Sizes */
+    .btn-sm { padding: 10px 20px; font-size: 0.75rem; }
+    .btn-lg { padding: 18px 40px; font-size: 0.95rem; }
+    .btn-block { width: 100%; }
+
+    /* ==========================================================================
+       07. NAVBAR & HEADER
+       ========================================================================== */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
-      background-color: rgba(255,255,255,0.98);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--wp-border-light);
+      z-index: var(--z-header);
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-gray-100);
       transition: all var(--transition-base);
+      height: var(--header-height);
     }
+
     .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.98);
       box-shadow: var(--shadow-sm);
+      height: 70px;
     }
+
     .navbar-inner {
       max-width: var(--container-max);
       margin: 0 auto;
@@ -290,896 +790,1137 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 76px;
+      height: 100%;
     }
+
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--wp-black);
-      letter-spacing: -0.02em;
+      gap: var(--space-sm);
+      transition: transform var(--transition-base);
     }
-    .brand i {
-      color: var(--wp-gold);
-      font-size: 1.2rem;
+
+    .brand:hover {
+      transform: scale(1.02);
     }
-    .brand span {
-      color: var(--wp-gold);
+
+    .brand img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      transition: height var(--transition-base);
     }
+
+    .navbar.scrolled .brand img {
+      height: 34px;
+    }
+
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: var(--space-lg);
     }
-    .nav-menu a {
-      position: relative;
-      font-family: var(--font-body);
+
+    .nav-menu a:not(.btn) {
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--wp-gray);
-      letter-spacing: 0.01em;
-      padding: 0.5rem 0;
+      color: var(--color-gray-600);
+      position: relative;
+      padding: 4px 0;
+      transition: color var(--transition-fast);
     }
-    .nav-menu a::after {
+
+    .nav-menu a:not(.btn)::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       width: 0;
       height: 2px;
-      background-color: var(--wp-gold);
+      background-color: var(--color-black);
       transition: width var(--transition-base);
     }
-    .nav-menu a:hover,
-    .nav-menu a.active {
-      color: var(--wp-black);
-    }
-    .nav-menu a:hover::after,
-    .nav-menu a.active::after {
-      width: 100%;
-    }
-    .nav-cta {
-      margin-left: 1rem;
-    }
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      color: var(--wp-black);
-      padding: 0.5rem;
+
+    .nav-menu a:not(.btn):hover,
+    .nav-menu a:not(.btn).active {
+      color: var(--color-black);
     }
 
-    /* ============================================================
-       HERO
-       ============================================================ */
+    .nav-menu a:not(.btn):hover::after,
+    .nav-menu a:not(.btn).active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      margin-left: var(--space-sm);
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--color-black);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-xs);
+      transition: transform var(--transition-fast);
+    }
+
+    .nav-toggle:active {
+      transform: scale(0.9);
+    }
+
+    /* ==========================================================================
+       08. HERO SECTION
+       ========================================================================== */
     .hero {
       position: relative;
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 120px 0 80px;
-      background-color: #1d2327;
+      padding: calc(var(--header-height) + var(--space-2xl)) 0 var(--space-2xl);
+      background-color: var(--color-dark);
       background-image: url('assets/images/Hero.png');
       background-size: cover;
-      background-position: center center;
+      background-position: center;
       background-repeat: no-repeat;
       overflow: hidden;
     }
+
+    /* Overlay Gradient */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(29, 35, 39, 0.92) 0%,
-        rgba(29, 35, 39, 0.75) 45%,
-        rgba(29, 35, 39, 0.55) 100%
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.8) 50%,
+        rgba(0, 0, 0, 0.6) 100%
       );
-      pointer-events: none;
       z-index: 1;
     }
+
+    /* Grid Pattern Overlay */
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(184,134,11,0.18) 0%, transparent 45%),
-        radial-gradient(circle at 80% 70%, rgba(34,113,177,0.12) 0%, transparent 45%);
-      pointer-events: none;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
       z-index: 1;
+      pointer-events: none;
     }
+
     .hero-inner {
       position: relative;
       z-index: 2;
+      width: 100%;
       max-width: var(--container-max);
       margin: 0 auto;
       padding: 0 var(--space-md);
-      width: 100%;
     }
+
     .hero-content {
       max-width: 760px;
     }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background-color: rgba(184,134,11,0.15);
-      border: 1px solid rgba(184,134,11,0.3);
+      gap: var(--space-xs);
+      padding: 8px 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: var(--radius-full);
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--wp-gold-light);
+      color: var(--color-white);
       margin-bottom: var(--space-md);
+      backdrop-filter: blur(4px);
     }
-    .hero-badge i {
-      font-size: 0.7rem;
-    }
+
     .hero h1 {
-      color: var(--wp-white);
+      color: var(--color-white);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: var(--space-md);
-      font-weight: 800;
       letter-spacing: -0.03em;
     }
+
     .hero h1 span {
-      color: var(--wp-gold);
       font-style: italic;
+      color: var(--color-gray-200);
     }
+
     .hero-description {
       font-size: 1.15rem;
-      color: #a7aaad;
-      line-height: 1.7;
-      margin-bottom: var(--space-lg);
+      color: var(--color-gray-200);
+      line-height: 1.8;
+      margin-bottom: var(--space-xl);
       max-width: 600px;
     }
+
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: var(--space-xl);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-3xl);
     }
+
     .hero-stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 3rem;
+      gap: var(--space-xl);
       padding-top: var(--space-lg);
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .hero-stat-item {
       display: flex;
       flex-direction: column;
     }
+
     .hero-stat-number {
       font-family: var(--font-heading);
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      color: var(--wp-white);
+      color: var(--color-white);
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: var(--space-xs);
     }
+
     .hero-stat-number span {
-      color: var(--wp-gold);
+      font-size: 1.5rem;
+      color: var(--color-gray-400);
     }
+
     .hero-stat-label {
       font-size: 0.85rem;
-      color: #a7aaad;
+      color: var(--color-gray-400);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       font-weight: 500;
     }
+
+    /* Scroll Indicator */
     .hero-scroll {
       position: absolute;
-      bottom: 2rem;
+      bottom: var(--space-lg);
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       font-size: 1.2rem;
       animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-10px); }
-      60% { transform: translateX(-50%) translateY(-5px); }
+      transition: color var(--transition-fast);
     }
 
-    /* ============================================================
-       ABOUT SECTION
-       ============================================================ */
+    .hero-scroll:hover {
+      color: var(--color-white);
+    }
+
+    /* ==========================================================================
+       09. ABOUT SECTION
+       ========================================================================== */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
+      gap: var(--space-3xl);
       align-items: center;
     }
+
     .about-image {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
       aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #2c3338, #50575e);
+      background-color: var(--color-light);
+      border: 1px solid var(--color-gray-200);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.9rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      box-shadow: var(--shadow-md);
     }
-    .about-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.3) 100%);
+
+    .about-image i {
+      font-size: 4rem;
+      color: var(--color-gray-300);
+      transition: transform var(--transition-slow);
     }
+
+    .about-image:hover i {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
     .about-badge {
       position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      z-index: 2;
-      padding: 1rem 1.4rem;
-      background-color: var(--wp-white);
+      bottom: var(--space-lg);
+      left: var(--space-lg);
+      padding: var(--space-md) var(--space-lg);
+      background-color: var(--color-white);
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-lg);
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: var(--space-sm);
+      border-left: 4px solid var(--color-black);
+      transition: transform var(--transition-base);
     }
+
+    .about-image:hover .about-badge {
+      transform: translateY(-5px);
+    }
+
     .about-badge i {
-      font-size: 1.6rem;
-      color: var(--wp-gold);
+      font-size: 1.5rem;
+      color: var(--color-black);
     }
-    .about-badge-text {
-      display: flex;
-      flex-direction: column;
-    }
+
     .about-badge-text strong {
+      display: block;
       font-size: 1.1rem;
-      color: var(--wp-black);
+      color: var(--color-black);
+      font-family: var(--font-body);
     }
+
     .about-badge-text small {
-      font-size: 0.75rem;
-      color: var(--wp-gray);
+      font-size: 0.8rem;
+      color: var(--color-gray-500);
     }
+
     .about-content h2 {
       margin-bottom: var(--space-md);
     }
+
     .about-content p {
-      color: var(--wp-gray);
       margin-bottom: var(--space-md);
-      font-size: 1.02rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
     }
+
     .about-features {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin: var(--space-lg) 0;
+      gap: var(--space-md);
+      margin: var(--space-xl) 0;
     }
+
     .about-feature {
       display: flex;
-      gap: 0.8rem;
+      gap: var(--space-sm);
       align-items: flex-start;
+      padding: var(--space-sm);
+      border-radius: var(--radius-md);
+      transition: background-color var(--transition-fast);
     }
-    .about-feature i {
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
+
+    .about-feature:hover {
+      background-color: var(--color-light);
+    }
+
+    .about-feature-icon {
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: rgba(184,134,11,0.1);
-      color: var(--wp-gold);
+      background-color: var(--color-light);
+      color: var(--color-black);
       border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-    }
-    .about-feature div strong {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--wp-black);
-      margin-bottom: 0.15rem;
-    }
-    .about-feature div small {
-      font-size: 0.82rem;
-      color: var(--wp-gray-light);
-      line-height: 1.4;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: all var(--transition-base);
     }
 
-    /* ============================================================
-       MENU SECTION
-       ============================================================ */
+    .about-feature:hover .about-feature-icon {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      transform: rotate(-10deg) scale(1.1);
+    }
+
+    .about-feature strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--color-black);
+      margin-bottom: 2px;
+      font-family: var(--font-body);
+    }
+
+    .about-feature small {
+      font-size: 0.85rem;
+      color: var(--color-gray-500);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       10. MENU SECTION
+       ========================================================================== */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
     }
+
     .menu-card {
-      position: relative;
-      background-color: var(--wp-white);
-      border: 1px solid var(--wp-border-light);
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-200);
       border-radius: var(--radius-md);
-      padding: 2rem 1.6rem;
-      transition: all var(--transition-base);
+      padding: var(--space-xl);
+      position: relative;
       overflow: hidden;
+      transition: all var(--transition-base);
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Top Bar Accent */
     .menu-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background-color: var(--wp-gold);
+      height: 4px;
+      background-color: var(--color-black);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform var(--transition-base);
     }
+
     .menu-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
       box-shadow: var(--shadow-lg);
       border-color: transparent;
     }
+
     .menu-card:hover::before {
       transform: scaleX(1);
     }
+
     .menu-icon {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--color-light);
+      color: var(--color-black);
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--wp-light);
-      color: var(--wp-gold);
-      border-radius: var(--radius-md);
-      font-size: 1.4rem;
-      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+      margin-bottom: var(--space-md);
       transition: all var(--transition-base);
-    }
-    .menu-card:hover .menu-icon {
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
-      transform: rotate(-6deg);
-    }
-    .menu-card h4 {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--wp-black);
-      margin-bottom: 0.5rem;
-    }
-    .menu-card p {
-      font-size: 0.9rem;
-      color: var(--wp-gray);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-    .menu-price {
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--wp-gold);
-      letter-spacing: 0.02em;
-    }
-    .menu-tag {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      padding: 0.25rem 0.7rem;
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: var(--radius-full);
     }
 
-    /* ============================================================
-       FEATURES / FASILITAS
-       ============================================================ */
+    .menu-card:hover .menu-icon {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .menu-card h4 {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-black);
+      margin-bottom: var(--space-xs);
+    }
+
+    .menu-card p {
+      font-size: 0.9rem;
+      color: var(--color-gray-600);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+      flex-grow: 1;
+    }
+
+    .menu-price {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--color-black);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .menu-price::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--color-gray-300);
+      transition: width var(--transition-base), background-color var(--transition-base);
+    }
+
+    .menu-card:hover .menu-price::before {
+      width: 30px;
+      background-color: var(--color-black);
+    }
+
+    .menu-tag {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background-color: var(--color-black);
+      color: var(--color-white);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       11. FASILITAS SECTION
+       ========================================================================== */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
     }
+
     .feature-item {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: var(--space-xl) var(--space-md);
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray-200);
       border-radius: var(--radius-md);
-      background-color: var(--wp-white);
-      border: 1px solid var(--wp-border-light);
       transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
     }
+
+    .feature-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--color-black);
+      transform: scaleX(0);
+      transition: transform var(--transition-base);
+    }
+
     .feature-item:hover {
-      border-color: var(--wp-gold);
-      transform: translateY(-4px);
+      border-color: transparent;
+      transform: translateY(-6px);
       box-shadow: var(--shadow-md);
     }
+
+    .feature-item:hover::after {
+      transform: scaleX(1);
+    }
+
     .feature-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 1rem;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto var(--space-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: rgba(184,134,11,0.08);
-      color: var(--wp-gold);
+      background-color: var(--color-light);
+      color: var(--color-black);
       border-radius: 50%;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       transition: all var(--transition-base);
     }
+
     .feature-item:hover .feature-icon {
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
+      background-color: var(--color-black);
+      color: var(--color-white);
+      transform: scale(1.1);
     }
+
     .feature-item h4 {
       font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--wp-black);
-      margin-bottom: 0.3rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-black);
+      margin-bottom: var(--space-xs);
     }
+
     .feature-item p {
-      font-size: 0.82rem;
-      color: var(--wp-gray-light);
+      font-size: 0.85rem;
+      color: var(--color-gray-500);
       margin: 0;
     }
 
-    /* ============================================================
-       TESTIMONIALS
-       ============================================================ */
+    /* ==========================================================================
+       12. TESTIMONI SECTION
+       ========================================================================== */
     .testimonial-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
     }
+
     .testimonial-card {
-      background-color: var(--wp-white);
-      padding: 2rem;
+      background-color: var(--color-white);
+      padding: var(--space-xl);
       border-radius: var(--radius-md);
-      border: 1px solid var(--wp-border-light);
-      position: relative;
+      border: 1px solid var(--color-gray-200);
       transition: all var(--transition-base);
+      position: relative;
     }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-family: var(--font-heading);
+      font-size: 6rem;
+      color: var(--color-gray-100);
+      line-height: 1;
+      pointer-events: none;
+      transition: color var(--transition-base);
+    }
+
     .testimonial-card:hover {
       box-shadow: var(--shadow-lg);
-      transform: translateY(-4px);
+      transform: translateY(-5px);
     }
+
+    .testimonial-card:hover::before {
+      color: var(--color-gray-200);
+    }
+
     .testimonial-stars {
-      color: var(--wp-gold);
+      color: var(--color-black);
+      margin-bottom: var(--space-md);
       font-size: 0.9rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.1em;
+      display: flex;
+      gap: 4px;
     }
+
     .testimonial-text {
-      font-size: 0.98rem;
-      color: var(--wp-gray);
-      line-height: 1.7;
       font-style: italic;
-      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--color-gray-700);
+      margin-bottom: var(--space-lg);
+      position: relative;
+      z-index: 1;
     }
+
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: var(--space-sm);
     }
+
     .testimonial-avatar {
-      width: 44px;
-      height: 44px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-black);
+      color: var(--color-white);
       border-radius: 50%;
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      font-family: var(--font-heading);
     }
+
     .testimonial-author-info strong {
       display: block;
       font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--wp-black);
-    }
-    .testimonial-author-info small {
-      font-size: 0.78rem;
-      color: var(--wp-gray-light);
+      color: var(--color-black);
+      font-size: 0.95rem;
     }
 
-    /* ============================================================
-       CTA SECTION
-       ============================================================ */
-    .cta-section {
-      position: relative;
-      padding: var(--space-xxl) 0;
-      background: linear-gradient(135deg, var(--wp-black) 0%, var(--wp-dark) 100%);
-      overflow: hidden;
+    .testimonial-author-info small {
+      color: var(--color-gray-500);
+      font-size: 0.8rem;
     }
+
+    /* ==========================================================================
+       13. CTA SECTION
+       ========================================================================== */
+    .cta-section {
+      padding: var(--space-3xl) 0;
+      background-color: var(--color-black);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Background Pattern */
     .cta-section::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(184,134,11,0.2) 0%, transparent 70%);
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 40%);
       pointer-events: none;
     }
-    .cta-content {
+
+    .cta-section .container {
       position: relative;
       z-index: 2;
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .cta-content h2 {
-      color: var(--wp-white);
-      margin-bottom: var(--space-md);
-    }
-    .cta-content p {
-      color: #a7aaad;
-      font-size: 1.1rem;
-      margin-bottom: var(--space-lg);
-    }
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
     }
 
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-    .footer {
-      background-color: var(--wp-black);
-      color: #a7aaad;
-      padding: var(--space-xl) 0 var(--space-md);
+    .cta-section h2 {
+      color: var(--color-white);
+      margin-bottom: var(--space-sm);
     }
+
+    .cta-section p {
+      color: var(--color-gray-400);
+      max-width: 600px;
+      margin: 0 auto var(--space-xl);
+      font-size: 1.1rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       14. FOOTER
+       ========================================================================== */
+    .footer {
+      background-color: var(--color-dark);
+      color: var(--color-gray-400);
+      padding: var(--space-3xl) 0 var(--space-lg);
+      border-top: 1px solid var(--color-gray-900);
+    }
+
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-xl);
-    }
-    .footer-brand {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--wp-white);
-      margin-bottom: var(--space-sm);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .footer-brand i {
-      color: var(--wp-gold);
-    }
-    .footer-brand span {
-      color: var(--wp-gold);
-    }
-    .footer-desc {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin-bottom: var(--space-md);
-      max-width: 320px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 0.6rem;
-    }
-    .footer-social a {
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(255,255,255,0.05);
-      color: #a7aaad;
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-base);
-    }
-    .footer-social a:hover {
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
-      transform: translateY(-2px);
-    }
-    .footer-column h5 {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--wp-white);
-      margin-bottom: var(--space-md);
-    }
-    .footer-column ul li {
-      margin-bottom: 0.6rem;
-    }
-    .footer-column ul li a {
-      font-size: 0.9rem;
-      color: #a7aaad;
-      transition: color var(--transition-fast);
-    }
-    .footer-column ul li a:hover {
-      color: var(--wp-gold);
-    }
-    .footer-contact-item {
-      display: flex;
-      gap: 0.7rem;
-      margin-bottom: 0.9rem;
-      font-size: 0.88rem;
-      line-height: 1.5;
-    }
-    .footer-contact-item i {
-      color: var(--wp-gold);
-      flex-shrink: 0;
-      margin-top: 0.2rem;
-    }
-    .footer-bottom {
-      padding-top: var(--space-md);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.82rem;
-    }
-    .footer-bottom a {
-      color: var(--wp-gold);
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
     }
 
-    /* ============================================================
-       SCROLL TO TOP
-       ============================================================ */
-    .scroll-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 48px;
-      height: 48px;
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-brand img {
+      height: 45px;
+      width: auto;
+      filter: brightness(0) invert(1); /* Membuat logo menjadi putih */
+    }
+
+    .footer-desc {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: var(--space-lg);
+      max-width: 320px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-xs);
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-      border-radius: var(--radius-sm);
-      font-size: 1rem;
-      box-shadow: var(--shadow-lg);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
       transition: all var(--transition-base);
-      z-index: 999;
     }
-    .scroll-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .scroll-top:hover {
-      background-color: var(--wp-gold);
+
+    .footer-social a:hover {
+      background-color: var(--color-white);
+      color: var(--color-black);
       transform: translateY(-4px);
     }
 
-    /* ============================================================
-       ANIMATIONS
-       ============================================================ */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    .footer-column h5 {
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-md);
     }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .fade-in-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in-left.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .fade-in-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in-right.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
 
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
-    @media (max-width: 992px) {
+    .footer-column ul li {
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-column ul li a {
+      font-size: 0.9rem;
+      transition: color var(--transition-fast), padding-left var(--transition-fast);
+      display: inline-block;
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--color-white);
+      padding-left: 5px;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-contact-item i {
+      color: var(--color-white);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      font-size: 0.85rem;
+    }
+
+    .footer-bottom a {
+      color: var(--color-gray-300);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-bottom a:hover {
+      color: var(--color-white);
+    }
+
+    /* ==========================================================================
+       15. SCROLL TO TOP BUTTON
+       ========================================================================== */
+    .scroll-top {
+      position: fixed;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-black);
+      color: var(--color-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.9);
+      transition: all var(--transition-base);
+      z-index: var(--z-sticky);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .scroll-top:hover {
+      background-color: var(--color-gray-800);
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    /* ==========================================================================
+       16. RESPONSIVE DESIGN (Media Queries)
+       ========================================================================== */
+    
+    /* -- Tablet (max-width: 992px) -- */
+    @media screen and (max-width: 992px) {
       .about-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-lg);
+        gap: var(--space-xl);
       }
+      
+      .about-image {
+        aspect-ratio: 16/9;
+      }
+
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 768px) {
+    /* -- Mobile Landscape (max-width: 768px) -- */
+    @media screen and (max-width: 768px) {
+      :root {
+        --header-height: 70px;
+      }
+
       .nav-menu {
         position: fixed;
-        top: 76px;
+        top: var(--header-height);
         left: 0;
         right: 0;
+        background-color: var(--color-white);
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        background-color: var(--wp-white);
-        border-bottom: 1px solid var(--wp-border);
-        padding: 1rem 0;
+        padding: var(--space-sm) 0;
         transform: translateY(-150%);
         transition: transform var(--transition-base);
         box-shadow: var(--shadow-md);
+        border-bottom: 1px solid var(--color-gray-200);
+        z-index: var(--z-header);
       }
+
       .nav-menu.open {
         transform: translateY(0);
       }
-      .nav-menu a {
-        padding: 0.9rem 1.5rem;
+
+      .nav-menu a:not(.btn) {
+        padding: var(--space-md) var(--space-lg);
+        border-bottom: 1px solid var(--color-gray-100);
       }
-      .nav-menu a::after {
+
+      .nav-menu a:not(.btn)::after {
         display: none;
       }
+
       .nav-cta {
-        margin: 0.5rem 1.5rem 0;
+        margin: var(--space-sm) var(--space-lg) 0;
       }
+
       .nav-toggle {
         display: block;
       }
+
       .hero {
         min-height: auto;
-        padding: 120px 0 60px;
+        padding: calc(var(--header-height) + var(--space-xl)) 0 var(--space-xl);
       }
+
       .hero-stats {
-        gap: 2rem;
+        flex-direction: column;
+        gap: var(--space-md);
       }
-      .hero-stat-number {
-        font-size: 1.8rem;
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
       }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
       .about-features {
         grid-template-columns: 1fr;
       }
+
       .footer-grid {
         grid-template-columns: 1fr;
         gap: var(--space-lg);
       }
+
       .footer-desc {
         max-width: 100%;
       }
-      .scroll-top {
-        bottom: 1rem;
-        right: 1rem;
-      }
-      .section {
-        padding: var(--space-xl) 0;
-      }
-    }
 
-    @media (max-width: 480px) {
-      .hero-actions {
-        flex-direction: column;
+      .section {
+        padding-top: var(--space-xl);
+        padding-bottom: var(--space-xl);
       }
-      .hero-actions .btn {
-        width: 100%;
-      }
-      .hero-stats {
-        flex-direction: column;
-        gap: 1.2rem;
-      }
+
       .cta-actions {
         flex-direction: column;
       }
+
       .cta-actions .btn {
         width: 100%;
+      }
+
+      .scroll-top {
+        bottom: var(--space-md);
+        right: var(--space-md);
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    /* -- Mobile Portrait (max-width: 480px) -- */
+    @media screen and (max-width: 480px) {
+      .hero-badge {
+        font-size: 0.7rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .feature-item {
+        padding: var(--space-lg) var(--space-xs);
+      }
+
+      .feature-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.2rem;
+      }
+
+      .feature-item h4 {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* ==========================================================================
+       17. REDUCED MOTION (Accessibility)
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
-<body>
+<body class="loading">
 
-  <!-- ============================================================
+  <!-- ==========================================================================
+       LOADING SCREEN & CURTAIN EFFECT
+       ========================================================================== -->
+  <div id="loaderOverlay" class="loader-overlay">
+    <!-- Curtain Layers -->
+    <div class="loader-curtain">
+      <div class="curtain-left"></div>
+      <div class="curtain-right"></div>
+    </div>
+    
+    <!-- Loader Content -->
+    <div class="loader-content">
+      <!-- Pastikan Logo.png ada di folder yang sama -->
+      <img src="Logo.png" alt="O-Gut Logo" class="loader-logo">
+      <div class="skeleton-shimmer"></div>
+      <div class="loader-text">Menyiapkan Suasana...</div>
+    </div>
+  </div>
+
+  <!-- Skeleton Layout (Untuk Transisi Halaman) -->
+  <div id="skeletonLayout" class="skeleton-layout">
+    <div class="skeleton-block sk-hero"></div>
+    <div class="skeleton-block sk-title"></div>
+    <div class="skeleton-block sk-text"></div>
+    <div class="sk-grid">
+      <div class="skeleton-block sk-card"></div>
+      <div class="skeleton-block sk-card"></div>
+      <div class="skeleton-block sk-card"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
        NAVBAR
-       ============================================================ -->
+       ========================================================================== -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="brand">
-        <i class="fa-solid fa-mug-hot"></i>
-        O-<span>Gut!</span>
+      <a href="index.html" class="brand" aria-label="O-Gut Home">
+        <img src="Logo.png" alt="O-Gut! Logo">
       </a>
+      
       <div class="nav-menu" id="navMenu">
         <a href="#hero" class="active">Beranda</a>
         <a href="#tentang">Tentang</a>
         <a href="#menu">Menu</a>
         <a href="#fasilitas">Fasilitas</a>
         <a href="#testimoni">Testimoni</a>
-        <a href="kontak.html" class="btn btn-primary btn-sm nav-cta">
-          <i class="fa-solid fa-arrow-right"></i> Reservasi
+        
+        <!-- Tombol Reservasi yang Telah Diperbagus -->
+        <a href="kontak.html" class="btn btn-reservation btn-sm nav-cta">
+          <i class="fa-solid fa-calendar-check"></i> Reservasi
+          <i class="fa-solid fa-arrow-right" style="margin-left: 4px; font-size: 0.8em;"></i>
         </a>
       </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      
+      <button class="nav-toggle" id="navToggle" aria-label="Buka Menu">
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
   </nav>
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
   <section class="hero" id="hero">
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-badge">
-          <i class="fa-solid fa-star"></i>
-          Cafe Industrial Minimalis di Lumajang
+        <div class="hero-badge reveal">
+          <i class="fa-solid fa-star"></i> Cafe Industrial Minimalis
         </div>
-        <h1>
+        
+        <h1 class="reveal delay-100">
           Nikmati Kopi Terbaik<br>
           di <span>O-Gut! Lumajang</span>
         </h1>
-        <p class="hero-description">
+        
+        <p class="hero-description reveal delay-200">
           Suasana industrial yang hangat dengan sentuhan vintage. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat di jantung kota Lumajang.
         </p>
-        <div class="hero-actions">
-          <a href="#menu" class="btn btn-gold btn-lg">
+        
+        <div class="hero-actions reveal delay-300">
+          <a href="#menu" class="btn btn-primary btn-lg">
             <i class="fa-solid fa-utensils"></i> Lihat Menu
           </a>
           <a href="kontak.html" class="btn btn-outline-light btn-lg">
             <i class="fa-solid fa-location-dot"></i> Kunjungi Kami
           </a>
         </div>
-        <div class="hero-stats">
+        
+        <div class="hero-stats reveal delay-400">
           <div class="hero-stat-item">
-            <div class="hero-stat-number"><span>50+</span></div>
+            <div class="hero-stat-number">50<span>+</span></div>
             <div class="hero-stat-label">Menu Pilihan</div>
           </div>
           <div class="hero-stat-item">
-            <div class="hero-stat-number"><span>4.8</span>★</div>
+            <div class="hero-stat-number">4.8<span>★</span></div>
             <div class="hero-stat-label">Rating Pelanggan</div>
           </div>
           <div class="hero-stat-item">
-            <div class="hero-stat-number"><span>12</span> Jam</div>
+            <div class="hero-stat-number">12<span> Jam</span></div>
             <div class="hero-stat-label">Buka Setiap Hari</div>
           </div>
         </div>
       </div>
     </div>
-    <a href="#tentang" class="hero-scroll" aria-label="Scroll down">
+    
+    <a href="#tentang" class="hero-scroll" aria-label="Scroll ke Bawah">
       <i class="fa-solid fa-chevron-down"></i>
     </a>
   </section>
 
-  <!-- ============================================================
-       ABOUT
-       ============================================================ -->
+  <!-- ==========================================================================
+       ABOUT SECTION
+       ========================================================================== -->
   <section class="section" id="tentang">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image fade-in-left">
-          <i class="fa-solid fa-image" style="font-size: 3rem;"></i>
+        
+        <div class="about-image reveal-left">
+          <i class="fa-solid fa-image"></i>
           <div class="about-badge">
             <i class="fa-solid fa-award"></i>
             <div class="about-badge-text">
@@ -1188,187 +1929,203 @@
             </div>
           </div>
         </div>
-        <div class="about-content fade-in-right">
+        
+        <div class="about-content reveal-right">
           <span class="section-label">Tentang Kami</span>
           <h2>Lebih dari Sekadar<br>Tempat Ngopi</h2>
           <div class="divider divider-left"></div>
+          
           <p>
             O-Gut! mengusung konsep industrial yang dipadukan dengan sentuhan vintage dan dominasi warna putih minimalis. Interiornya dihiasi tanaman hidup di beberapa sudut untuk memberikan kesan segar dan nyaman.
           </p>
           <p>
             Tersedia area indoor dan outdoor yang luas — cocok untuk bersantai sendiri, membaca buku, berkumpul dengan komunitas, atau nongkrong bersama teman.
           </p>
+          
           <div class="about-features">
             <div class="about-feature">
-              <i class="fa-solid fa-wifi"></i>
+              <div class="about-feature-icon"><i class="fa-solid fa-wifi"></i></div>
               <div>
                 <strong>Wi-Fi Gratis</strong>
                 <small>Koneksi cepat untuk bekerja</small>
               </div>
             </div>
             <div class="about-feature">
-              <i class="fa-solid fa-plug"></i>
+              <div class="about-feature-icon"><i class="fa-solid fa-plug"></i></div>
               <div>
                 <strong>Colokan Listrik</strong>
                 <small>Tersedia di setiap meja</small>
               </div>
             </div>
             <div class="about-feature">
-              <i class="fa-solid fa-tree"></i>
+              <div class="about-feature-icon"><i class="fa-solid fa-tree"></i></div>
               <div>
                 <strong>Indoor & Outdoor</strong>
                 <small>Area luas dan nyaman</small>
               </div>
             </div>
             <div class="about-feature">
-              <i class="fa-solid fa-music"></i>
+              <div class="about-feature-icon"><i class="fa-solid fa-music"></i></div>
               <div>
                 <strong>Live Music</strong>
                 <small>Setiap malam minggu</small>
               </div>
             </div>
           </div>
+          
           <a href="tentang.html" class="btn btn-outline">
-            <i class="fa-solid fa-arrow-right"></i> Selengkapnya
+            Selengkapnya <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
+        
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       MENU
-       ============================================================ -->
+  <!-- ==========================================================================
+       MENU SECTION
+       ========================================================================== -->
   <section class="section section-alt" id="menu">
     <div class="container">
-      <div class="text-center">
+      
+      <div class="text-center reveal">
         <span class="section-label">Menu Andalan</span>
         <h2 class="section-title">Dari Kopi Hingga Makanan Berat</h2>
         <p class="section-subtitle">
           Pilihan menu lengkap yang siap memanjakan lidah Anda — dari kopi signature hingga hidangan utama.
         </p>
       </div>
+      
       <div class="menu-grid">
-        <div class="menu-card fade-in">
+        
+        <div class="menu-card reveal">
           <span class="menu-tag">Best Seller</span>
-          <div class="menu-icon">
-            <i class="fa-solid fa-bowl-rice"></i>
-          </div>
+          <div class="menu-icon"><i class="fa-solid fa-bowl-rice"></i></div>
           <h4>Rice Bowl Spicy Chicken</h4>
           <p>Nasi hangat dengan ayam pedas spesial, pilihan favorit pengunjung untuk makan siang.</p>
           <div class="menu-price">Rp 25.000</div>
         </div>
-        <div class="menu-card fade-in delay-1">
-          <div class="menu-icon">
-            <i class="fa-solid fa-utensils"></i>
-          </div>
+        
+        <div class="menu-card reveal delay-100">
+          <div class="menu-icon"><i class="fa-solid fa-utensils"></i></div>
           <h4>Pasta Olahan</h4>
           <p>Olahan pasta dengan saus pilihan, cocok untuk makan santai bersama teman.</p>
           <div class="menu-price">Rp 28.000</div>
         </div>
-        <div class="menu-card fade-in delay-2">
-          <div class="menu-icon">
-            <i class="fa-solid fa-drumstick-bite"></i>
-          </div>
+        
+        <div class="menu-card reveal delay-200">
+          <div class="menu-icon"><i class="fa-solid fa-drumstick-bite"></i></div>
           <h4>Chicken Fillet & Burger</h4>
           <p>Chicken Fillet dan Chicken Burger yang renyah dan mengenyangkan.</p>
           <div class="menu-price">Rp 30.000</div>
         </div>
-        <div class="menu-card fade-in">
+        
+        <div class="menu-card reveal">
           <span class="menu-tag">Signature</span>
-          <div class="menu-icon">
-            <i class="fa-solid fa-mug-saucer"></i>
-          </div>
+          <div class="menu-icon"><i class="fa-solid fa-mug-saucer"></i></div>
           <h4>Es Kopi Regal</h4>
           <p>Signature coffee dengan rasa khas yang bikin nagih. Wajib dicoba!</p>
           <div class="menu-price">Rp 20.000</div>
         </div>
-        <div class="menu-card fade-in delay-1">
-          <div class="menu-icon">
-            <i class="fa-solid fa-glass-water"></i>
-          </div>
+        
+        <div class="menu-card reveal delay-100">
+          <div class="menu-icon"><i class="fa-solid fa-glass-water"></i></div>
           <h4>Ice Banana Ogut</h4>
           <p>Minuman segar berbahan pisang, favorit di kalangan pengunjung.</p>
           <div class="menu-price">Rp 18.000</div>
         </div>
-        <div class="menu-card fade-in delay-2">
-          <div class="menu-icon">
-            <i class="fa-solid fa-cookie-bite"></i>
-          </div>
+        
+        <div class="menu-card reveal delay-200">
+          <div class="menu-icon"><i class="fa-solid fa-cookie-bite"></i></div>
           <h4>Camilan & Dessert</h4>
           <p>French fries, brownies, dan es krim sebagai pendamping santai Anda.</p>
           <div class="menu-price">Rp 15.000</div>
         </div>
+        
       </div>
-      <div class="text-center" style="margin-top: 3rem;">
+      
+      <div class="text-center reveal delay-300" style="margin-top: var(--space-xl);">
         <a href="menu.html" class="btn btn-primary">
-          <i class="fa-solid fa-book-open"></i> Lihat Menu Lengkap
+          Lihat Menu Lengkap <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
+      
     </div>
   </section>
 
-  <!-- ============================================================
-       FASILITAS
-       ============================================================ -->
+  <!-- ==========================================================================
+       FASILITAS SECTION
+       ========================================================================== -->
   <section class="section" id="fasilitas">
     <div class="container">
-      <div class="text-center">
+      
+      <div class="text-center reveal">
         <span class="section-label">Fasilitas</span>
         <h2 class="section-title">Kenyamanan untuk Anda</h2>
         <p class="section-subtitle">
           Kami menyediakan berbagai fasilitas untuk mendukung produktivitas dan kenyamanan Anda.
         </p>
       </div>
+      
       <div class="features-grid">
-        <div class="feature-item fade-in">
+        
+        <div class="feature-item reveal">
           <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
           <h4>Wi-Fi Gratis</h4>
           <p>Koneksi cepat</p>
         </div>
-        <div class="feature-item fade-in delay-1">
+        
+        <div class="feature-item reveal delay-100">
           <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
           <h4>Colokan Listrik</h4>
           <p>Di setiap meja</p>
         </div>
-        <div class="feature-item fade-in delay-2">
+        
+        <div class="feature-item reveal delay-200">
           <div class="feature-icon"><i class="fa-solid fa-square-parking"></i></div>
           <h4>Area Parkir</h4>
           <p>Luas & aman</p>
         </div>
-        <div class="feature-item fade-in delay-3">
+        
+        <div class="feature-item reveal delay-300">
           <div class="feature-icon"><i class="fa-solid fa-smoking"></i></div>
           <h4>Ruang Merokok</h4>
           <p>Area outdoor</p>
         </div>
-        <div class="feature-item fade-in">
+        
+        <div class="feature-item reveal">
           <div class="feature-icon"><i class="fa-solid fa-motorcycle"></i></div>
           <h4>Pesan Antar</h4>
           <p>Layanan delivery</p>
         </div>
-        <div class="feature-item fade-in delay-1">
+        
+        <div class="feature-item reveal delay-100">
           <div class="feature-icon"><i class="fa-solid fa-music"></i></div>
           <h4>Live Music</h4>
           <p>Malam minggu</p>
         </div>
+        
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       TESTIMONI
-       ============================================================ -->
+  <!-- ==========================================================================
+       TESTIMONI SECTION
+       ========================================================================== -->
   <section class="section section-alt" id="testimoni">
     <div class="container">
-      <div class="text-center">
+      
+      <div class="text-center reveal">
         <span class="section-label">Testimoni</span>
         <h2 class="section-title">Apa Kata Mereka?</h2>
         <p class="section-subtitle">
           Pengalaman para pengunjung yang telah merasakan suasana O-Gut! Lumajang.
         </p>
       </div>
+      
       <div class="testimonial-grid">
-        <div class="testimonial-card fade-in">
+        
+        <div class="testimonial-card reveal">
           <div class="testimonial-stars">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -1387,7 +2144,8 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card fade-in delay-1">
+        
+        <div class="testimonial-card reveal delay-100">
           <div class="testimonial-stars">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -1406,7 +2164,8 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card fade-in delay-2">
+        
+        <div class="testimonial-card reveal delay-200">
           <div class="testimonial-stars">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -1425,26 +2184,27 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       CTA
-       ============================================================ -->
+  <!-- ==========================================================================
+       CTA SECTION
+       ========================================================================== -->
   <section class="cta-section">
     <div class="container">
-      <div class="cta-content fade-in">
-        <span class="section-label" style="color: var(--wp-gold-light);">Reservasi</span>
+      <div class="reveal">
+        <span class="section-label" style="background: transparent; border-color: var(--color-gray-800); color: var(--color-gray-400);">Reservasi</span>
         <h2>Pesan Tempat Anda Sekarang</h2>
         <p>
           Ingin mengadakan acara, gathering komunitas, atau sekadar reservasi meja? Hubungi kami dan kami akan menyiapkan tempat terbaik untuk Anda.
         </p>
         <div class="cta-actions">
-          <a href="kontak.html" class="btn btn-gold btn-lg">
+          <a href="kontak.html" class="btn btn-outline-light btn-lg">
             <i class="fa-solid fa-calendar-check"></i> Reservasi Sekarang
           </a>
-          <a href="https://wa.me/628121787321" class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">
+          <a href="https://wa.me/628121787321" class="btn btn-primary btn-lg" target="_blank" rel="noopener" style="background: var(--color-white); color: var(--color-black); border-color: var(--color-white);">
             <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
           </a>
         </div>
@@ -1452,16 +2212,16 @@
     </div>
   </section>
 
-  <!-- ============================================================
+  <!-- ==========================================================================
        FOOTER
-       ============================================================ -->
+       ========================================================================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
+        
         <div>
           <div class="footer-brand">
-            <i class="fa-solid fa-mug-hot"></i>
-            O-<span>Gut!</span>
+            <img src="Logo.png" alt="O-Gut Logo">
           </div>
           <p class="footer-desc">
             Cafe industrial minimalis di jantung kota Lumajang. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat.
@@ -1473,6 +2233,7 @@
             <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
           </div>
         </div>
+        
         <div class="footer-column">
           <h5>Navigasi</h5>
           <ul>
@@ -1482,15 +2243,17 @@
             <li><a href="kontak.html">Kontak</a></li>
           </ul>
         </div>
+        
         <div class="footer-column">
           <h5>Layanan</h5>
           <ul>
-            <li><a href="#">Reservasi Meja</a></li>
+            <li><a href="kontak.html">Reservasi Meja</a></li>
             <li><a href="#">Pesan Antar</a></li>
             <li><a href="#">Event & Gathering</a></li>
             <li><a href="#">Live Music</a></li>
           </ul>
         </div>
+        
         <div class="footer-column">
           <h5>Kontak</h5>
           <div class="footer-contact-item">
@@ -1506,164 +2269,221 @@
             <span>Setiap hari, 10.00 – 22.30 WIB</span>
           </div>
         </div>
+        
       </div>
+      
       <div class="footer-bottom">
         <div>&copy; 2025 <strong>O-Gut! Lumajang</strong>. All rights reserved.</div>
-        <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--wp-gold);"></i> di Lumajang</div>
+        <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--color-gray-300);"></i> di Lumajang</div>
       </div>
     </div>
   </footer>
 
-  <!-- ============================================================
-       SCROLL TO TOP
-       ============================================================ -->
-  <a href="#hero" class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <!-- ==========================================================================
+       SCROLL TO TOP BUTTON
+       ========================================================================== -->
+  <a href="#hero" class="scroll-top" id="scrollTop" aria-label="Kembali ke Atas">
     <i class="fa-solid fa-arrow-up"></i>
   </a>
 
-  <!-- ============================================================
-       JAVASCRIPT (INTERNAL)
-       ============================================================ -->
+  <!-- ==========================================================================
+       JAVASCRIPT (Internal Script)
+       ========================================================================== -->
   <script>
-    (function () {
-      'use strict';
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      /* ==========================================================================
+         1. LOADING SCREEN / CURTAIN EFFECT
+         ========================================================================== */
+      const loaderOverlay = document.getElementById('loaderOverlay');
+      const body = document.body;
 
-      /* ========== NAVBAR SCROLL EFFECT ========== */
-      var navbar = document.getElementById('navbar');
-      var scrollTopBtn = document.getElementById('scrollTop');
+      // Simulasi loading (bisa disesuaikan durasinya)
+      setTimeout(() => {
+        loaderOverlay.classList.add('hidden');
+        body.classList.remove('loading');
+        
+        // Opsional: hapus elemen loader setelah animasi selesai agar tidak memblokir klik
+        setTimeout(() => {
+          loaderOverlay.style.display = 'none';
+        }, 1200); // Sesuaikan dengan durasi transisi CSS curtain
+      }, 1500);
 
-      function handleScroll() {
-        var scrolled = window.scrollY > 50;
-        if (navbar) {
-          navbar.classList.toggle('scrolled', scrolled);
+      /* ==========================================================================
+         2. NAVBAR SCROLL & SCROLL TO TOP LOGIC
+         ========================================================================== */
+      const navbar = document.getElementById('navbar');
+      const scrollTopBtn = document.getElementById('scrollTop');
+
+      window.addEventListener('scroll', function() {
+        // Navbar Scroll Effect
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
         }
-        if (scrollTopBtn) {
-          scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+
+        // Scroll Top Button Visibility
+        if (window.scrollY > 500) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
         }
-      }
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll();
+      });
 
-      /* ========== MOBILE MENU TOGGLE ========== */
-      var navToggle = document.getElementById('navToggle');
-      var navMenu = document.getElementById('navMenu');
+      /* ==========================================================================
+         3. MOBILE MENU TOGGLE
+         ========================================================================== */
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      const navIcon = navToggle.querySelector('i');
 
-      if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function () {
-          navMenu.classList.toggle('open');
-          var icon = navToggle.querySelector('i');
-          if (icon) {
-            var isOpen = navMenu.classList.contains('open');
-            icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-          }
-        });
+      navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('open');
+        
+        // Ganti ikon antara hamburger dan close
+        if (navMenu.classList.contains('open')) {
+          navIcon.classList.remove('fa-bars');
+          navIcon.classList.add('fa-xmark');
+        } else {
+          navIcon.classList.remove('fa-xmark');
+          navIcon.classList.add('fa-bars');
+        }
+      });
 
-        navMenu.querySelectorAll('a').forEach(function (link) {
-          link.addEventListener('click', function () {
-            navMenu.classList.remove('open');
-            var icon = navToggle.querySelector('i');
-            if (icon) icon.className = 'fa-solid fa-bars';
-          });
-        });
-      }
-
-      /* ========== SMOOTH SCROLL FOR ANCHOR LINKS ========== */
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener('click', function (e) {
-          var targetId = this.getAttribute('href');
-          if (targetId === '#' || targetId.length < 2) return;
-          var target = document.querySelector(targetId);
-          if (target) {
-            e.preventDefault();
-            var offset = 76;
-            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-          }
+      // Tutup menu mobile saat link diklik
+      const navLinks = navMenu.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navMenu.classList.remove('open');
+          navIcon.classList.remove('fa-xmark');
+          navIcon.classList.add('fa-bars');
         });
       });
 
-      /* ========== ACTIVE NAV LINK ON SCROLL ========== */
-      var sections = document.querySelectorAll('section[id]');
-      var navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
-
-      function updateActiveLink() {
-        var scrollPos = window.scrollY + 100;
-        sections.forEach(function (section) {
-          var top = section.offsetTop;
-          var height = section.offsetHeight;
-          var id = section.getAttribute('id');
-          if (scrollPos >= top && scrollPos < top + height) {
-            navLinks.forEach(function (link) {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === '#' + id) {
-                link.classList.add('active');
-              }
+      /* ==========================================================================
+         4. SMOOTH SCROLL FOR ANCHOR LINKS
+         ========================================================================== */
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          
+          // Abaikan jika hanya "#" atau kosong
+          if (targetId === '#' || targetId === '') return;
+          
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            e.preventDefault();
+            
+            // Hitung offset untuk navbar
+            const headerHeight = navbar.offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
             });
           }
         });
-      }
-      window.addEventListener('scroll', updateActiveLink, { passive: true });
+      });
 
-      /* ========== INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS ========== */
-      var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+      /* ==========================================================================
+         5. INTERSECTION OBSERVER (SCROLL REVEAL ANIMATIONS)
+         ========================================================================== */
+      const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
 
       if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
+        const observerOptions = {
+          threshold: 0.15, // 15% elemen terlihat
+          rootMargin: '0px 0px -50px 0px' // Trigger sedikit sebelum elemen masuk viewport
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(entry => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target); // Hanya animasi sekali
             }
           });
-        }, {
-          threshold: 0.15,
-          rootMargin: '0px 0px -50px 0px'
-        });
+        }, observerOptions);
 
-        animatedElements.forEach(function (el) {
+        revealElements.forEach(el => {
           observer.observe(el);
         });
       } else {
-        animatedElements.forEach(function (el) {
-          el.classList.add('visible');
+        // Fallback untuk browser lama: langsung tampilkan semua
+        revealElements.forEach(el => {
+          el.classList.add('active');
         });
       }
 
-      /* ========== COUNTER ANIMATION FOR HERO STATS ========== */
-      function animateCounter(el, target, duration) {
-        var start = 0;
-        var startTime = null;
-        function step(timestamp) {
-          if (!startTime) startTime = timestamp;
-          var progress = Math.min((timestamp - startTime) / duration, 1);
-          var value = Math.floor(progress * (target - start) + start);
-          el.textContent = value;
-          if (progress < 1) {
-            requestAnimationFrame(step);
-          } else {
-            el.textContent = target;
+      /* ==========================================================================
+         6. ACTIVE NAV LINK ON SCROLL (HANYA UNTUK INDEX.HTML)
+         ========================================================================== */
+      const sections = document.querySelectorAll('section[id]');
+      const navMenuLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+      window.addEventListener('scroll', function() {
+        let current = '';
+        const scrollPosition = window.pageYOffset + navbar.offsetHeight + 100;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
           }
-        }
-        requestAnimationFrame(step);
-      }
-
-      /* ========== LAZY LOAD IMAGES (FALLBACK) ========== */
-      if ('loading' in HTMLImageElement.prototype) {
-        document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
-          img.src = img.dataset.src || img.src;
         });
-      }
 
-      /* ========== YEAR AUTO-UPDATE ========== */
-      var yearEls = document.querySelectorAll('.current-year');
-      yearEls.forEach(function (el) {
+        navMenuLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      /* ==========================================================================
+         7. SKELETON TRANSITION FOR INTERNAL LINKS (OPSIONAL)
+         ========================================================================== */
+      // Mencegah Skeleton muncul jika user menekan tombol back browser
+      const skeletonLayout = document.getElementById('skeletonLayout');
+      
+      // Contoh implementasi: munculkan skeleton saat pindah halaman
+      // (Untuk implementasi nyata, ini biasanya dipicu oleh event click pada link internal)
+      /*
+      document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Jika link bukan anchor internal
+          if (!this.getAttribute('href').startsWith('#')) {
+            // Mencegah navigasi langsung, tampilkan skeleton, lalu redirect
+            // e.preventDefault();
+            // skeletonLayout.classList.add('active');
+            // setTimeout(() => { window.location.href = this.href; }, 300);
+          }
+        });
+      });
+      */
+
+      /* ==========================================================================
+         8. YEAR AUTO-UPDATE
+         ========================================================================== */
+      const yearElements = document.querySelectorAll('.current-year');
+      yearElements.forEach(el => {
         el.textContent = new Date().getFullYear();
       });
 
-      /* ========== CONSOLE BRANDING ========== */
-      console.log('%c O-Gut! Lumajang ', 'background: #1d2327; color: #b8860b; font-size: 20px; font-weight: bold; padding: 8px 16px; border-radius: 4px;');
-      console.log('%c Cafe Industrial Minimalis — Jl. Jendral Haryono No.44, Lumajang ', 'color: #50575e; font-size: 12px;');
-    })();
+      /* ==========================================================================
+         9. CONSOLE BRANDING (Untuk developer)
+         ========================================================================== */
+      const cssStyle = 'background: #000000; color: #ffffff; font-size: 16px; font-weight: bold; padding: 10px 20px; border-radius: 5px;';
+      const cssStyle2 = 'color: #666666; font-size: 12px; font-style: italic;';
+      console.log('%c O-Gut! Lumajang ', cssStyle);
+      console.log('%c Website by Developer. Suasana Industrial Minimalis. ', cssStyle2);
+
+    });
   </script>
 </body>
 </html>
