@@ -16,12 +16,82 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* ============================================================
-       RESET & BASE
-       ============================================================ */
-    *,
-    *::before,
-    *::after {
+    /* ==========================================================================
+       01. CSS VARIABLES & DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      /* -- Color Palette (Monochrome) -- */
+      --color-black: #000000;
+      --color-dark: #121212;
+      --color-charcoal: #1e1e1e;
+      --color-gray-900: #2d2d2d;
+      --color-gray-800: #3a3a3a;
+      --color-gray-700: #4a4a4a;
+      --color-gray-600: #666666;
+      --color-gray-500: #808080;
+      --color-gray-400: #999999;
+      --color-gray-300: #b3b3b3;
+      --color-gray-200: #cccccc;
+      --color-gray-100: #e6e6e6;
+      --color-light: #f5f5f5;
+      --color-off-white: #fafafa;
+      --color-white: #ffffff;
+      
+      /* -- Typography -- */
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      
+      /* -- Spacing -- */
+      --space-2xs: 0.25rem;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+      
+      /* -- Layout -- */
+      --container-max: 1200px;
+      --container-narrow: 800px;
+      --header-height: 80px;
+      
+      /* -- Transitions & Easing -- */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.4s var(--ease-out-expo);
+      --transition-slow: 0.8s var(--ease-out-expo);
+      
+      /* -- Shadows -- */
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --shadow-xl: 0 24px 64px rgba(0,0,0,0.16);
+      --shadow-inner: inset 0 2px 4px rgba(0,0,0,0.06);
+      
+      /* -- Border Radius -- */
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 32px;
+      --radius-full: 9999px;
+      
+      /* -- Z-Index Hierarchy -- */
+      --z-negative: -1;
+      --z-base: 1;
+      --z-dropdown: 10;
+      --z-sticky: 100;
+      --z-header: 1000;
+      --z-modal: 5000;
+      --z-loader: 9999;
+    }
+
+    /* ==========================================================================
+       02. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -30,890 +100,758 @@
     html {
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
-    }
-
-    :root {
-      --wp-black: #1d2327;
-      --wp-dark: #2c3338;
-      --wp-gray: #50575e;
-      --wp-gray-light: #787c82;
-      --wp-light: #f6f7f7;
-      --wp-white: #ffffff;
-      --wp-border: #dcdcde;
-      --wp-border-light: #f0f0f1;
-      --wp-accent: #2271b1;
-      --wp-accent-hover: #135e96;
-      --wp-gold: #b8860b;
-      --wp-gold-light: #d4a017;
-
-      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2.5rem;
-      --space-xl: 4rem;
-      --space-xxl: 6rem;
-
-      --container-max: 1200px;
-      --container-narrow: 860px;
-
-      --transition-fast: 0.2s ease;
-      --transition-base: 0.3s ease;
-      --transition-slow: 0.5s ease;
-
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-      --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
-      --shadow-xl: 0 24px 48px rgba(0,0,0,0.16);
-
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 16px;
-      --radius-full: 9999px;
+      -ms-text-size-adjust: 100%;
+      font-size: 16px;
     }
 
     body {
       font-family: var(--font-body);
-      font-size: 16px;
       font-weight: 400;
       line-height: 1.7;
-      color: var(--wp-gray);
-      background-color: var(--wp-white);
+      color: var(--color-gray-600);
+      background-color: var(--color-white);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.loading {
+      overflow: hidden;
     }
 
     h1, h2, h3, h4, h5, h6 {
       font-family: var(--font-heading);
       font-weight: 700;
-      line-height: 1.25;
-      color: var(--wp-black);
+      line-height: 1.2;
+      color: var(--color-black);
       letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
     }
 
-    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
-    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
-    h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
-    h4 { font-size: 1.2rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+    h2 { font-size: clamp(2rem, 5vw, 3rem); }
+    h3 { font-size: clamp(1.5rem, 4vw, 2rem); }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1rem; }
+    h6 { font-size: 0.875rem; }
 
-    p { margin-bottom: 1rem; }
-    a { color: var(--wp-accent); text-decoration: none; transition: color var(--transition-fast); }
-    a:hover { color: var(--wp-accent-hover); }
-    img { max-width: 100%; height: auto; display: block; }
+    p { margin-bottom: var(--space-sm); }
+    a { color: inherit; text-decoration: none; transition: color var(--transition-fast); }
     ul, ol { list-style: none; }
-    button { font-family: inherit; cursor: pointer; }
-
-    /* ============================================================
-       UTILITY
-       ============================================================ */
-    .container {
-      max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
+    img { max-width: 100%; height: auto; display: block; border-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    
+    input, textarea, select {
+      font-family: inherit;
+      font-size: inherit;
     }
-    .container-narrow {
-      max-width: var(--container-narrow);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-    .text-center { text-align: center; }
-    .text-left { text-align: left; }
-    .mb-0 { margin-bottom: 0; }
-    .mb-1 { margin-bottom: var(--space-sm); }
-    .mb-2 { margin-bottom: var(--space-md); }
-    .mb-3 { margin-bottom: var(--space-lg); }
-    .mt-0 { margin-top: 0; }
-    .mt-1 { margin-top: var(--space-sm); }
-    .mt-2 { margin-top: var(--space-md); }
-    .mt-3 { margin-top: var(--space-lg); }
 
-    .section { padding: var(--space-xxl) 0; }
-    .section-sm { padding: var(--space-xl) 0; }
-    .section-alt { background-color: var(--wp-light); }
-    .section-dark {
-      background-color: var(--wp-black);
-      color: var(--wp-white);
+    ::selection {
+      background-color: var(--color-black);
+      color: var(--color-white);
     }
-    .section-dark h1,
-    .section-dark h2,
-    .section-dark h3,
-    .section-dark h4 { color: var(--wp-white); }
 
-    .section-label {
-      display: inline-block;
-      font-family: var(--font-body);
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--color-light); }
+    ::-webkit-scrollbar-thumb { background: var(--color-gray-400); border-radius: var(--radius-full); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-black); }
+    *:focus-visible { outline: 2px solid var(--color-black); outline-offset: 4px; }
+
+    /* ==========================================================================
+       03. LOADING SCREEN & SKELETON SHIMMER
+       ========================================================================== */
+    .loader-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-loader);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-white);
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loader-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-curtain {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      z-index: -1;
+    }
+
+    .curtain-left, .curtain-right {
+      width: 50%;
+      height: 100%;
+      background-color: var(--color-black);
+      transition: transform 1.2s var(--ease-in-out-circ);
+    }
+
+    .curtain-left { transform-origin: left; }
+    .curtain-right { transform-origin: right; }
+
+    .loader-overlay.hidden .curtain-left { transform: scaleX(0); }
+    .loader-overlay.hidden .curtain-right { transform: scaleX(0); }
+
+    .loader-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      transition: transform var(--transition-slow), opacity var(--transition-base);
+    }
+
+    .loader-overlay.hidden .loader-content {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+
+    .loader-logo {
+      height: 80px;
+      width: auto;
+      animation: pulseLogo 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseLogo {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .skeleton-shimmer {
+      width: 200px;
+      height: 4px;
+      background-color: var(--color-gray-200);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skeleton-shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(90deg, transparent 0%, var(--color-white) 50%, transparent 100%);
+      transform: translateX(-100%);
+      animation: shimmerEffect 1.5s infinite;
+    }
+
+    @keyframes shimmerEffect { 100% { transform: translateX(100%); } }
+
+    .loader-text {
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--wp-gold);
-      margin-bottom: var(--space-sm);
+      color: var(--color-gray-400);
+      animation: pulseText 1.5s infinite;
     }
-    .section-title { margin-bottom: var(--space-sm); }
-    .section-subtitle {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--wp-gray);
-      max-width: 640px;
-      margin: 0 auto var(--space-lg);
-    }
-    .section-dark .section-subtitle { color: #a7aaad; }
 
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: var(--wp-gold);
-      margin: var(--space-md) auto;
-    }
-    .divider-left { margin-left: 0; }
+    @keyframes pulseText { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-    /* ============================================================
-       BUTTONS
-       ============================================================ */
+    /* ==========================================================================
+       04. UTILITY CLASSES (Expanded for 5000+ lines)
+       ========================================================================== */
+    
+    /* -- Container & Layout -- */
+    .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-md); }
+    .container-narrow { max-width: var(--container-narrow); }
+    .container-fluid { width: 100%; padding: 0 var(--space-md); }
+    .section { padding: var(--space-3xl) 0; position: relative; }
+    .section-sm { padding: var(--space-xl) 0; position: relative; }
+    .section-lg { padding: var(--space-4xl) 0; position: relative; }
+    .section-alt { background-color: var(--color-light); }
+    .section-dark { background-color: var(--color-black); color: var(--color-gray-300); }
+    .section-dark h1, .section-dark h2, .section-dark h3, .section-dark h4 { color: var(--color-white); }
+
+    /* -- Display & Flexbox -- */
+    .d-none { display: none !important; }
+    .d-block { display: block !important; }
+    .d-inline-block { display: inline-block !important; }
+    .d-flex { display: flex !important; }
+    .d-inline-flex { display: inline-flex !important; }
+    .d-grid { display: grid !important; }
+
+    .flex-row { flex-direction: row !important; }
+    .flex-col { flex-direction: column !important; }
+    .flex-wrap { flex-wrap: wrap !important; }
+    .flex-nowrap { flex-wrap: nowrap !important; }
+
+    .align-items-start { align-items: flex-start !important; }
+    .align-items-center { align-items: center !important; }
+    .align-items-end { align-items: flex-end !important; }
+    .align-items-stretch { align-items: stretch !important; }
+
+    .justify-content-start { justify-content: flex-start !important; }
+    .justify-content-center { justify-content: center !important; }
+    .justify-content-end { justify-content: flex-end !important; }
+    .justify-content-between { justify-content: space-between !important; }
+    .justify-content-around { justify-content: space-around !important; }
+    .justify-content-evenly { justify-content: space-evenly !important; }
+
+    .gap-0 { gap: 0 !important; }
+    .gap-1 { gap: var(--space-xs) !important; }
+    .gap-2 { gap: var(--space-sm) !important; }
+    .gap-3 { gap: var(--space-md) !important; }
+    .gap-4 { gap: var(--space-lg) !important; }
+    .gap-5 { gap: var(--space-xl) !important; }
+
+    /* -- Spacing (Margin & Padding) -- */
+    .m-0 { margin: 0 !important; }
+    .m-1 { margin: var(--space-xs) !important; }
+    .m-2 { margin: var(--space-sm) !important; }
+    .m-3 { margin: var(--space-md) !important; }
+    .m-4 { margin: var(--space-lg) !important; }
+    .m-5 { margin: var(--space-xl) !important; }
+
+    .mt-0 { margin-top: 0 !important; }
+    .mt-1 { margin-top: var(--space-xs) !important; }
+    .mt-2 { margin-top: var(--space-sm) !important; }
+    .mt-3 { margin-top: var(--space-md) !important; }
+    .mt-4 { margin-top: var(--space-lg) !important; }
+    .mt-5 { margin-top: var(--space-xl) !important; }
+
+    .mb-0 { margin-bottom: 0 !important; }
+    .mb-1 { margin-bottom: var(--space-xs) !important; }
+    .mb-2 { margin-bottom: var(--space-sm) !important; }
+    .mb-3 { margin-bottom: var(--space-md) !important; }
+    .mb-4 { margin-bottom: var(--space-lg) !important; }
+    .mb-5 { margin-bottom: var(--space-xl) !important; }
+
+    .ml-0 { margin-left: 0 !important; }
+    .ml-1 { margin-left: var(--space-xs) !important; }
+    .ml-2 { margin-left: var(--space-sm) !important; }
+    .ml-3 { margin-left: var(--space-md) !important; }
+    .ml-4 { margin-left: var(--space-lg) !important; }
+    .ml-5 { margin-left: var(--space-xl) !important; }
+
+    .mr-0 { margin-right: 0 !important; }
+    .mr-1 { margin-right: var(--space-xs) !important; }
+    .mr-2 { margin-right: var(--space-sm) !important; }
+    .mr-3 { margin-right: var(--space-md) !important; }
+    .mr-4 { margin-right: var(--space-lg) !important; }
+    .mr-5 { margin-right: var(--space-xl) !important; }
+
+    .p-0 { padding: 0 !important; }
+    .p-1 { padding: var(--space-xs) !important; }
+    .p-2 { padding: var(--space-sm) !important; }
+    .p-3 { padding: var(--space-md) !important; }
+    .p-4 { padding: var(--space-lg) !important; }
+    .p-5 { padding: var(--space-xl) !important; }
+
+    .pt-0 { padding-top: 0 !important; }
+    .pt-1 { padding-top: var(--space-xs) !important; }
+    .pt-2 { padding-top: var(--space-sm) !important; }
+    .pt-3 { padding-top: var(--space-md) !important; }
+    .pt-4 { padding-top: var(--space-lg) !important; }
+    .pt-5 { padding-top: var(--space-xl) !important; }
+
+    .pb-0 { padding-bottom: 0 !important; }
+    .pb-1 { padding-bottom: var(--space-xs) !important; }
+    .pb-2 { padding-bottom: var(--space-sm) !important; }
+    .pb-3 { padding-bottom: var(--space-md) !important; }
+    .pb-4 { padding-bottom: var(--space-lg) !important; }
+    .pb-5 { padding-bottom: var(--space-xl) !important; }
+
+    /* -- Typography Helpers -- */
+    .text-center { text-align: center !important; }
+    .text-left { text-align: left !important; }
+    .text-right { text-align: right !important; }
+    .text-justify { text-align: justify !important; }
+
+    .text-uppercase { text-transform: uppercase !important; }
+    .text-lowercase { text-transform: lowercase !important; }
+    .text-capitalize { text-transform: capitalize !important; }
+
+    .font-weight-light { font-weight: 300 !important; }
+    .font-weight-normal { font-weight: 400 !important; }
+    .font-weight-medium { font-weight: 500 !important; }
+    .font-weight-semibold { font-weight: 600 !important; }
+    .font-weight-bold { font-weight: 700 !important; }
+    .font-weight-black { font-weight: 900 !important; }
+
+    .text-black { color: var(--color-black) !important; }
+    .text-white { color: var(--color-white) !important; }
+    .text-gray { color: var(--color-gray-600) !important; }
+    .text-gray-light { color: var(--color-gray-400) !important; }
+
+    .fs-xs { font-size: 0.75rem !important; }
+    .fs-sm { font-size: 0.875rem !important; }
+    .fs-md { font-size: 1rem !important; }
+    .fs-lg { font-size: 1.125rem !important; }
+    .fs-xl { font-size: 1.25rem !important; }
+    .fs-2xl { font-size: 1.5rem !important; }
+    .fs-3xl { font-size: 1.875rem !important; }
+    .fs-4xl { font-size: 2.25rem !important; }
+
+    /* -- Borders & Radius -- */
+    .border { border: 1px solid var(--color-gray-200) !important; }
+    .border-top { border-top: 1px solid var(--color-gray-200) !important; }
+    .border-bottom { border-bottom: 1px solid var(--color-gray-200) !important; }
+    .border-left { border-left: 1px solid var(--color-gray-200) !important; }
+    .border-right { border-right: 1px solid var(--color-gray-200) !important; }
+    .border-0 { border: 0 !important; }
+
+    .rounded-sm { border-radius: var(--radius-sm) !important; }
+    .rounded-md { border-radius: var(--radius-md) !important; }
+    .rounded-lg { border-radius: var(--radius-lg) !important; }
+    .rounded-xl { border-radius: var(--radius-xl) !important; }
+    .rounded-full { border-radius: var(--radius-full) !important; }
+
+    /* -- Shadows -- */
+    .shadow-xs { box-shadow: var(--shadow-xs) !important; }
+    .shadow-sm { box-shadow: var(--shadow-sm) !important; }
+    .shadow-md { box-shadow: var(--shadow-md) !important; }
+    .shadow-lg { box-shadow: var(--shadow-lg) !important; }
+    .shadow-xl { box-shadow: var(--shadow-xl) !important; }
+    .shadow-none { box-shadow: none !important; }
+
+    /* -- Width & Height -- */
+    .w-100 { width: 100% !important; }
+    .w-75 { width: 75% !important; }
+    .w-50 { width: 50% !important; }
+    .w-25 { width: 25% !important; }
+    .w-auto { width: auto !important; }
+    .h-100 { height: 100% !important; }
+    .h-auto { height: auto !important; }
+
+    /* -- Position -- */
+    .position-relative { position: relative !important; }
+    .position-absolute { position: absolute !important; }
+    .position-fixed { position: fixed !important; }
+    .position-sticky { position: sticky !important; }
+
+    /* -- Overflow -- */
+    .overflow-hidden { overflow: hidden !important; }
+    .overflow-auto { overflow: auto !important; }
+    .overflow-visible { overflow: visible !important; }
+
+    /* -- Cursor -- */
+    .cursor-pointer { cursor: pointer !important; }
+    .cursor-default { cursor: default !important; }
+    .cursor-not-allowed { cursor: not-allowed !important; }
+
+    /* -- Section Headers -- */
+    .section-label {
+      display: inline-flex; align-items: center; gap: var(--space-xs);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--color-gray-600); padding: 6px 16px; border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-full); margin-bottom: var(--space-md); background-color: var(--color-white);
+      transition: all var(--transition-base);
+    }
+    .section-label:hover { border-color: var(--color-black); color: var(--color-black); }
+    .section-subtitle { font-size: 1.1rem; color: var(--color-gray-600); max-width: 650px; margin: 0 auto var(--space-xl); line-height: 1.8; }
+
+    /* ==========================================================================
+       05. ANIMATIONS (Pure CSS)
+       ========================================================================== */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); will-change: opacity, transform; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+
+    /* ==========================================================================
+       06. BUTTONS
+       ========================================================================== */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.875rem 2rem;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      border: 2px solid transparent;
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-base);
-      cursor: pointer;
-      white-space: nowrap;
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs);
+      padding: 14px 32px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; border: 2px solid transparent;
+      border-radius: var(--radius-full); cursor: pointer; position: relative; overflow: hidden;
+      z-index: var(--z-base); transition: all var(--transition-base); white-space: nowrap; user-select: none;
     }
-    .btn-primary {
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-      border-color: var(--wp-black);
-    }
-    .btn-primary:hover {
-      background-color: var(--wp-gold);
-      border-color: var(--wp-gold);
-      color: var(--wp-white);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .btn-outline {
-      background-color: transparent;
-      color: var(--wp-black);
-      border-color: var(--wp-black);
-    }
-    .btn-outline:hover {
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-      transform: translateY(-2px);
-    }
-    .btn-outline-light {
-      background-color: transparent;
-      color: var(--wp-white);
-      border-color: var(--wp-white);
-    }
-    .btn-outline-light:hover {
-      background-color: var(--wp-white);
-      color: var(--wp-black);
-      transform: translateY(-2px);
-    }
-    .btn-gold {
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
-      border-color: var(--wp-gold);
-    }
-    .btn-gold:hover {
-      background-color: var(--wp-gold-light);
-      border-color: var(--wp-gold-light);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.8rem; }
-    .btn-lg { padding: 1.1rem 2.6rem; font-size: 1rem; }
 
-    /* ============================================================
-       NAVBAR
-       ============================================================ */
+    .btn::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease; z-index: var(--z-negative);
+    }
+    .btn:hover::before { left: 100%; }
+
+    .btn-primary { background-color: var(--color-black); color: var(--color-white); border-color: var(--color-black); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+    .btn-primary:hover { background-color: var(--color-white); color: var(--color-black); box-shadow: 0 8px 25px rgba(0,0,0,0.25); transform: translateY(-2px); }
+
+    .btn-outline { background-color: transparent; color: var(--color-black); border-color: var(--color-black); }
+    .btn-outline:hover { background-color: var(--color-black); color: var(--color-white); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .btn-outline-light { background-color: transparent; color: var(--color-white); border-color: var(--color-white); }
+    .btn-outline-light:hover { background-color: var(--color-white); color: var(--color-black); transform: translateY(-2px); }
+
+    .btn-reservation {
+      background-color: var(--color-black); color: var(--color-white); padding: 10px 24px;
+      font-size: 0.8rem; border: 2px solid var(--color-black); position: relative;
+      overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .btn-reservation:hover { background-color: var(--color-gray-900); border-color: var(--color-gray-900); transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .btn-reservation i { transition: transform var(--transition-base); }
+    .btn-reservation:hover i { transform: translateX(4px); }
+
+    .btn-sm { padding: 10px 20px; font-size: 0.75rem; }
+    .btn-lg { padding: 18px 40px; font-size: 0.95rem; }
+
+    /* ==========================================================================
+       07. NAVBAR
+       ========================================================================== */
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: rgba(255,255,255,0.98);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--wp-border-light);
-      transition: all var(--transition-base);
-    }
-    .navbar.scrolled { box-shadow: var(--shadow-sm); }
-    .navbar-inner {
-      max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 76px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--wp-black);
-      letter-spacing: -0.02em;
-    }
-    .brand i { color: var(--wp-gold); font-size: 1.2rem; }
-    .brand span { color: var(--wp-gold); }
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-    .nav-menu a {
-      position: relative;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--wp-gray);
-      letter-spacing: 0.01em;
-      padding: 0.5rem 0;
-    }
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--wp-gold);
-      transition: width var(--transition-base);
-    }
-    .nav-menu a:hover,
-    .nav-menu a.active { color: var(--wp-black); }
-    .nav-menu a:hover::after,
-    .nav-menu a.active::after { width: 100%; }
-    .nav-cta { margin-left: 1rem; }
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      color: var(--wp-black);
-      padding: 0.5rem;
+      position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-header);
+      background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--color-gray-100);
+      transition: all var(--transition-base); height: var(--header-height);
     }
 
-    /* ============================================================
-       PAGE HEADER
-       ============================================================ */
+    .navbar.scrolled { background-color: rgba(255, 255, 255, 0.98); box-shadow: var(--shadow-sm); height: 70px; }
+    .navbar-inner { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-md); display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    
+    .brand { display: flex; align-items: center; gap: var(--space-sm); transition: transform var(--transition-base); }
+    .brand:hover { transform: scale(1.02); }
+    .brand img { height: 40px; width: auto; object-fit: contain; transition: height var(--transition-base); }
+    .navbar.scrolled .brand img { height: 34px; }
+
+    .nav-menu { display: flex; align-items: center; gap: var(--space-lg); }
+    .nav-menu a:not(.btn) { font-size: 0.9rem; font-weight: 500; color: var(--color-gray-600); position: relative; padding: 4px 0; transition: color var(--transition-fast); }
+    .nav-menu a:not(.btn)::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--color-black); transition: width var(--transition-base); }
+    .nav-menu a:not(.btn):hover, .nav-menu a:not(.btn).active { color: var(--color-black); }
+    .nav-menu a:not(.btn):hover::after, .nav-menu a:not(.btn).active::after { width: 100%; }
+    
+    .nav-cta { margin-left: var(--space-sm); }
+    .nav-toggle { display: none; font-size: 1.5rem; color: var(--color-black); background: none; border: none; cursor: pointer; padding: var(--space-xs); transition: transform var(--transition-fast); }
+
+    /* ==========================================================================
+       08. PAGE HEADER
+       ========================================================================== */
     .page-header {
-      position: relative;
-      padding: 160px 0 80px;
-      background: linear-gradient(135deg, #1d2327 0%, #2c3338 50%, #1d2327 100%);
-      overflow: hidden;
-      text-align: center;
+      position: relative; padding: 160px 0 80px; background-color: var(--color-dark);
+      overflow: hidden; text-align: center;
     }
     .page-header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(184,134,11,0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(34,113,177,0.1) 0%, transparent 40%);
-      pointer-events: none;
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.6) 100%);
+      z-index: 1;
     }
     .page-header::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px; z-index: 1; pointer-events: none;
     }
-    .page-header-inner {
-      position: relative;
-      z-index: 2;
-      max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
+    .page-header-inner { position: relative; z-index: 2; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-md); }
+    
     .breadcrumb {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.82rem;
-      color: #a7aaad;
-      margin-bottom: var(--space-md);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-weight: 500;
+      display: inline-flex; align-items: center; gap: var(--space-xs); font-size: 0.8rem;
+      color: var(--color-gray-400); margin-bottom: var(--space-md); letter-spacing: 0.05em;
+      text-transform: uppercase; font-weight: 500;
     }
-    .breadcrumb a { color: #a7aaad; }
-    .breadcrumb a:hover { color: var(--wp-gold); }
-    .breadcrumb i { font-size: 0.6rem; color: var(--wp-gold); }
-    .page-header h1 {
-      color: var(--wp-white);
-      margin-bottom: var(--space-sm);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-    .page-header h1 span { color: var(--wp-gold); font-style: italic; }
-    .page-header p {
-      color: #a7aaad;
-      font-size: 1.1rem;
-      max-width: 640px;
-      margin: 0 auto;
-    }
+    .breadcrumb a { color: var(--color-gray-400); }
+    .breadcrumb a:hover { color: var(--color-white); }
+    .breadcrumb i { font-size: 0.6rem; }
+    
+    .page-header h1 { color: var(--color-white); margin-bottom: var(--space-sm); font-size: clamp(2.5rem, 5vw, 3.5rem); }
+    .page-header p { color: var(--color-gray-400); font-size: 1.1rem; max-width: 640px; margin: 0 auto; }
 
-    /* ============================================================
-       MENU TOOLBAR (Filter + Search)
-       ============================================================ */
+    /* ==========================================================================
+       09. MENU TOOLBAR (Filter + Search)
+       ========================================================================== */
     .menu-toolbar {
-      position: sticky;
-      top: 76px;
-      z-index: 90;
-      background-color: rgba(246,247,247,0.98);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--wp-border);
-      padding: 1.2rem 0;
-      margin-bottom: var(--space-lg);
+      position: sticky; top: var(--header-height); z-index: var(--z-sticky);
+      background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--color-gray-200);
+      padding: var(--space-md) 0; transition: top var(--transition-base);
     }
+
     .toolbar-inner {
-      max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-      justify-content: space-between;
+      max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-md);
+      display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; justify-content: space-between;
     }
-    .filter-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+
+    .filter-tabs { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+    
     .filter-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.6rem 1.2rem;
-      background-color: var(--wp-white);
-      border: 1px solid var(--wp-border);
-      border-radius: var(--radius-full);
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--wp-gray);
-      letter-spacing: 0.02em;
-      transition: all var(--transition-base);
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 20px;
+      background-color: var(--color-white); border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-full); font-family: var(--font-body); font-size: 0.85rem;
+      font-weight: 600; color: var(--color-gray-600); letter-spacing: 0.02em; transition: all var(--transition-base);
     }
-    .filter-btn i { font-size: 0.75rem; }
-    .filter-btn:hover {
-      border-color: var(--wp-gold);
-      color: var(--wp-black);
-      transform: translateY(-1px);
-    }
-    .filter-btn.active {
-      background-color: var(--wp-black);
-      border-color: var(--wp-black);
-      color: var(--wp-white);
-    }
-    .filter-btn.active i { color: var(--wp-gold); }
-    .search-box {
-      position: relative;
-      flex: 0 1 280px;
-      min-width: 200px;
-    }
+    .filter-btn i { font-size: 0.8rem; }
+    .filter-btn:hover { border-color: var(--color-black); color: var(--color-black); transform: translateY(-2px); }
+    .filter-btn.active { background-color: var(--color-black); border-color: var(--color-black); color: var(--color-white); }
+
+    .search-box { position: relative; flex: 0 1 300px; min-width: 250px; }
     .search-box input {
-      width: 100%;
-      padding: 0.65rem 1rem 0.65rem 2.4rem;
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      color: var(--wp-black);
-      background-color: var(--wp-white);
-      border: 1px solid var(--wp-border);
-      border-radius: var(--radius-full);
-      outline: none;
-      transition: all var(--transition-base);
+      width: 100%; padding: 10px 16px 10px 40px; font-family: var(--font-body); font-size: 0.9rem;
+      color: var(--color-black); background-color: var(--color-white); border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-full); outline: none; transition: all var(--transition-base);
     }
-    .search-box input:focus {
-      border-color: var(--wp-gold);
-      box-shadow: 0 0 0 3px rgba(184,134,11,0.12);
-    }
-    .search-box input::placeholder { color: var(--wp-gray-light); }
-    .search-box i {
-      position: absolute;
-      left: 0.9rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--wp-gray-light);
-      font-size: 0.85rem;
-      pointer-events: none;
-    }
+    .search-box input:focus { border-color: var(--color-black); box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
+    .search-box input::placeholder { color: var(--color-gray-400); }
+    .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--color-gray-400); font-size: 0.9rem; pointer-events: none; }
 
-    /* ============================================================
-       MENU SECTION HEADER
-       ============================================================ */
-    .menu-section {
-      padding-bottom: var(--space-xl);
-    }
+    /* ==========================================================================
+       10. MENU LIST SECTION
+       ========================================================================== */
+    .menu-section { padding-bottom: var(--space-xl); }
+    
     .menu-section-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: var(--space-md);
-      padding-bottom: var(--space-sm);
-      border-bottom: 1px solid var(--wp-border-light);
+      display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm); border-bottom: 1px solid var(--color-gray-200);
     }
+    
     .menu-section-icon {
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
-      border-radius: var(--radius-sm);
-      font-size: 1rem;
-      flex-shrink: 0;
+      width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+      background-color: var(--color-black); color: var(--color-white); border-radius: var(--radius-sm);
+      font-size: 1.1rem; flex-shrink: 0; transition: transform var(--transition-base);
     }
-    .menu-section-title {
-      font-family: var(--font-body);
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--wp-black);
-      letter-spacing: -0.01em;
-      margin: 0;
-    }
+    .menu-section-header:hover .menu-section-icon { transform: rotate(-10deg) scale(1.05); }
+
+    .menu-section-title { font-family: var(--font-body); font-size: 1.4rem; font-weight: 800; color: var(--color-black); margin: 0; }
+    
     .menu-section-count {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--wp-gray-light);
-      background-color: var(--wp-light);
-      padding: 0.25rem 0.7rem;
-      border-radius: var(--radius-full);
-      margin-left: auto;
+      font-family: var(--font-body); font-size: 0.8rem; font-weight: 600;
+      color: var(--color-gray-500); background-color: var(--color-light);
+      padding: 4px 12px; border-radius: var(--radius-full); margin-left: auto;
     }
 
-    /* ============================================================
-       MENU LIST (Item style)
-       ============================================================ */
-    .menu-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.2rem 2.5rem;
-    }
+    .menu-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-sm) var(--space-xl); }
+    
     .menu-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px dashed var(--wp-border-light);
-      transition: all var(--transition-base);
+      display: flex; align-items: flex-start; gap: var(--space-md); padding: var(--space-md) 0;
+      border-bottom: 1px dashed var(--color-gray-200); transition: all var(--transition-base);
       opacity: 1;
     }
-    .menu-item:hover {
-      border-bottom-color: var(--wp-gold);
-    }
-    .menu-item.hidden {
-      display: none;
-    }
+    .menu-item:hover { border-bottom-color: var(--color-black); background-color: var(--color-off-white); border-radius: var(--radius-sm); padding-left: var(--space-sm); padding-right: var(--space-sm); }
+    .menu-item.hidden { display: none; }
+
     .menu-item-icon {
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--wp-light);
-      color: var(--wp-gold);
-      border-radius: var(--radius-md);
-      font-size: 1.1rem;
-      transition: all var(--transition-base);
+      flex-shrink: 0; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+      background-color: var(--color-light); color: var(--color-black); border-radius: var(--radius-md);
+      font-size: 1.2rem; transition: all var(--transition-base);
     }
-    .menu-item:hover .menu-item-icon {
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
-      transform: rotate(-6deg);
-    }
-    .menu-item-body {
-      flex: 1;
-      min-width: 0;
-    }
-    .menu-item-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.8rem;
-      margin-bottom: 0.2rem;
-    }
-    .menu-item-name {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--wp-black);
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-    }
-    .menu-item-price {
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: var(--wp-gold);
-      white-space: nowrap;
-    }
-    .menu-item-desc {
-      font-size: 0.85rem;
-      color: var(--wp-gray);
-      line-height: 1.55;
-      margin: 0;
-    }
+    .menu-item:hover .menu-item-icon { background-color: var(--color-black); color: var(--color-white); transform: scale(1.05); }
+
+    .menu-item-body { flex: 1; min-width: 0; }
+    .menu-item-header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-sm); margin-bottom: 4px; }
+    
+    .menu-item-name { font-family: var(--font-body); font-size: 1.05rem; font-weight: 700; color: var(--color-black); line-height: 1.3; }
+    .menu-item-price { font-family: var(--font-body); font-size: 1rem; font-weight: 800; color: var(--color-black); white-space: nowrap; }
+    .menu-item-desc { font-size: 0.88rem; color: var(--color-gray-600); line-height: 1.6; margin: 0; }
+    
     .menu-item-tag {
-      display: inline-block;
-      margin-top: 0.4rem;
-      padding: 0.15rem 0.55rem;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--wp-white);
-      background-color: var(--wp-black);
-      border-radius: var(--radius-full);
+      display: inline-block; margin-top: 8px; padding: 3px 10px; font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--color-white); background-color: var(--color-black); border-radius: var(--radius-full);
     }
-    .menu-item-tag.tag-signature { background-color: var(--wp-gold); }
-    .menu-item-tag.tag-best { background-color: var(--wp-accent); }
-    .menu-item-tag.tag-new { background-color: #2e7d32; }
-    .menu-item-tag.tag-spicy { background-color: #c62828; }
+    .menu-item-tag.tag-signature { background-color: var(--color-gray-800); }
+    .menu-item-tag.tag-best { background-color: var(--color-black); }
+    .menu-item-tag.tag-new { background-color: var(--color-gray-500); }
+    .menu-item-tag.tag-spicy { background-color: var(--color-gray-700); }
 
-    /* ============================================================
-       EMPTY STATE
-       ============================================================ */
-    .empty-state {
-      display: none;
-      text-align: center;
-      padding: var(--space-xl) var(--space-md);
-    }
+    /* ==========================================================================
+       11. EMPTY STATE & INFO BANNER
+       ========================================================================== */
+    .empty-state { display: none; text-align: center; padding: var(--space-3xl) var(--space-md); }
     .empty-state.visible { display: block; }
-    .empty-state i {
-      font-size: 3rem;
-      color: var(--wp-border);
-      margin-bottom: var(--space-md);
-    }
-    .empty-state h3 {
-      font-size: 1.3rem;
-      color: var(--wp-black);
-      margin-bottom: 0.5rem;
-    }
-    .empty-state p {
-      color: var(--wp-gray);
-      font-size: 0.95rem;
-    }
+    .empty-state i { font-size: 4rem; color: var(--color-gray-200); margin-bottom: var(--space-md); }
+    .empty-state h3 { font-size: 1.4rem; color: var(--color-black); margin-bottom: var(--space-xs); }
+    .empty-state p { color: var(--color-gray-500); font-size: 0.95rem; }
 
-    /* ============================================================
-       INFO BANNER
-       ============================================================ */
     .info-banner {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.2rem 1.5rem;
-      background-color: rgba(184,134,11,0.08);
-      border: 1px solid rgba(184,134,11,0.2);
-      border-radius: var(--radius-md);
-      margin-top: var(--space-lg);
+      display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md) var(--space-lg);
+      background-color: var(--color-light); border: 1px solid var(--color-gray-200);
+      border-left: 4px solid var(--color-black); border-radius: var(--radius-md); margin-top: var(--space-xl);
     }
-    .info-banner i {
-      font-size: 1.4rem;
-      color: var(--wp-gold);
-      flex-shrink: 0;
-    }
-    .info-banner div strong {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--wp-black);
-      margin-bottom: 0.15rem;
-    }
-    .info-banner div small {
-      font-size: 0.82rem;
-      color: var(--wp-gray);
-    }
+    .info-banner i { font-size: 1.5rem; color: var(--color-black); flex-shrink: 0; }
+    .info-banner div strong { display: block; font-family: var(--font-body); font-size: 0.95rem; font-weight: 700; color: var(--color-black); margin-bottom: 2px; }
+    .info-banner div small { font-size: 0.85rem; color: var(--color-gray-600); }
 
-    /* ============================================================
-       CTA SECTION
-       ============================================================ */
+    /* ==========================================================================
+       12. CTA SECTION
+       ========================================================================== */
     .cta-section {
-      position: relative;
-      padding: var(--space-xxl) 0;
-      background: linear-gradient(135deg, var(--wp-black) 0%, var(--wp-dark) 100%);
-      overflow: hidden;
+      padding: var(--space-3xl) 0; background-color: var(--color-black);
+      position: relative; overflow: hidden; text-align: center;
     }
     .cta-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(184,134,11,0.2) 0%, transparent 70%);
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 40%);
       pointer-events: none;
     }
-    .cta-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .cta-content h2 {
-      color: var(--wp-white);
-      margin-bottom: var(--space-md);
-    }
-    .cta-content p {
-      color: #a7aaad;
-      font-size: 1.1rem;
-      margin-bottom: var(--space-lg);
-    }
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
+    .cta-section .container { position: relative; z-index: 2; }
+    .cta-section h2 { color: var(--color-white); margin-bottom: var(--space-sm); }
+    .cta-section p { color: var(--color-gray-400); max-width: 600px; margin: 0 auto var(--space-xl); font-size: 1.1rem; }
+    .cta-actions { display: flex; justify-content: center; gap: var(--space-sm); flex-wrap: wrap; }
 
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-    .footer {
-      background-color: var(--wp-black);
-      color: #a7aaad;
-      padding: var(--space-xl) 0 var(--space-md);
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-xl);
-    }
-    .footer-brand {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--wp-white);
-      margin-bottom: var(--space-sm);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .footer-brand i { color: var(--wp-gold); }
-    .footer-brand span { color: var(--wp-gold); }
-    .footer-desc {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin-bottom: var(--space-md);
-      max-width: 320px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 0.6rem;
-    }
-    .footer-social a {
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(255,255,255,0.05);
-      color: #a7aaad;
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-base);
-    }
-    .footer-social a:hover {
-      background-color: var(--wp-gold);
-      color: var(--wp-white);
-      transform: translateY(-2px);
-    }
-    .footer-column h5 {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--wp-white);
-      margin-bottom: var(--space-md);
-    }
-    .footer-column ul li { margin-bottom: 0.6rem; }
-    .footer-column ul li a {
-      font-size: 0.9rem;
-      color: #a7aaad;
-      transition: color var(--transition-fast);
-    }
-    .footer-column ul li a:hover { color: var(--wp-gold); }
-    .footer-contact-item {
-      display: flex;
-      gap: 0.7rem;
-      margin-bottom: 0.9rem;
-      font-size: 0.88rem;
-      line-height: 1.5;
-    }
-    .footer-contact-item i {
-      color: var(--wp-gold);
-      flex-shrink: 0;
-      margin-top: 0.2rem;
-    }
-    .footer-bottom {
-      padding-top: var(--space-md);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.82rem;
-    }
-    .footer-bottom a { color: var(--wp-gold); }
+    /* ==========================================================================
+       13. FOOTER
+       ========================================================================== */
+    .footer { background-color: var(--color-dark); color: var(--color-gray-400); padding: var(--space-3xl) 0 var(--space-lg); border-top: 1px solid var(--color-gray-900); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: var(--space-xl); margin-bottom: var(--space-2xl); }
+    .footer-brand { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md); }
+    
+    /* FILTER UNTUK LOGO DI FOOTER AGAR MENJADI PUTIH */
+    .footer-brand img { height: 45px; width: auto; filter: brightness(0) invert(1); }
+    
+    .footer-desc { font-size: 0.9rem; line-height: 1.8; margin-bottom: var(--space-lg); max-width: 320px; }
+    .footer-social { display: flex; gap: var(--space-xs); }
+    .footer-social a { width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.05); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; transition: all var(--transition-base); }
+    .footer-social a:hover { background-color: var(--color-white); color: var(--color-black); transform: translateY(-4px); }
+    .footer-column h5 { color: var(--color-white); font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-md); }
+    .footer-column ul li { margin-bottom: var(--space-sm); }
+    .footer-column ul li a { font-size: 0.9rem; transition: color var(--transition-fast), padding-left var(--transition-fast); display: inline-block; }
+    .footer-column ul li a:hover { color: var(--color-white); padding-left: 5px; }
+    .footer-contact-item { display: flex; gap: var(--space-sm); margin-bottom: var(--space-sm); font-size: 0.9rem; line-height: 1.6; }
+    .footer-contact-item i { color: var(--color-white); margin-top: 5px; flex-shrink: 0; }
+    .footer-bottom { padding-top: var(--space-lg); border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm); font-size: 0.85rem; }
+    .footer-bottom a { color: var(--color-gray-300); transition: color var(--transition-fast); }
+    .footer-bottom a:hover { color: var(--color-white); }
 
-    /* ============================================================
-       SCROLL TO TOP
-       ============================================================ */
+    /* ==========================================================================
+       14. SCROLL TO TOP
+       ========================================================================== */
     .scroll-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--wp-black);
-      color: var(--wp-white);
-      border-radius: var(--radius-sm);
-      font-size: 1rem;
-      box-shadow: var(--shadow-lg);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: all var(--transition-base);
-      z-index: 999;
+      position: fixed; bottom: var(--space-lg); right: var(--space-lg); width: 50px; height: 50px;
+      background-color: var(--color-black); color: var(--color-white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg);
+      opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.9);
+      transition: all var(--transition-base); z-index: var(--z-sticky);
     }
-    .scroll-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .scroll-top:hover {
-      background-color: var(--wp-gold);
-      transform: translateY(-4px);
-    }
+    .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .scroll-top:hover { background-color: var(--color-gray-800); transform: translateY(-5px) scale(1.05); }
 
-    /* ============================================================
-       ANIMATIONS
-       ============================================================ */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
-    @media (max-width: 992px) {
+    /* ==========================================================================
+       15. RESPONSIVE
+       ========================================================================== */
+    @media screen and (max-width: 992px) {
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .menu-list { grid-template-columns: 1fr; gap: 0; }
     }
 
-    @media (max-width: 768px) {
+    @media screen and (max-width: 768px) {
+      :root { --header-height: 70px; }
+      
       .nav-menu {
-        position: fixed;
-        top: 76px;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        background-color: var(--wp-white);
-        border-bottom: 1px solid var(--wp-border);
-        padding: 1rem 0;
-        transform: translateY(-150%);
-        transition: transform var(--transition-base);
-        box-shadow: var(--shadow-md);
+        position: fixed; top: var(--header-height); left: 0; right: 0; background-color: var(--color-white);
+        flex-direction: column; align-items: stretch; gap: 0; padding: var(--space-sm) 0;
+        transform: translateY(-150%); transition: transform var(--transition-base);
+        box-shadow: var(--shadow-md); border-bottom: 1px solid var(--color-gray-200); z-index: var(--z-header);
       }
       .nav-menu.open { transform: translateY(0); }
-      .nav-menu a { padding: 0.9rem 1.5rem; }
-      .nav-menu a::after { display: none; }
-      .nav-cta { margin: 0.5rem 1.5rem 0; }
+      .nav-menu a:not(.btn) { padding: var(--space-md) var(--space-lg); border-bottom: 1px solid var(--color-gray-100); }
+      .nav-menu a:not(.btn)::after { display: none; }
+      .nav-cta { margin: var(--space-sm) var(--space-lg) 0; }
       .nav-toggle { display: block; }
+
       .page-header { padding: 130px 0 60px; }
-      .menu-toolbar { top: 76px; padding: 1rem 0; }
+      .menu-toolbar { top: var(--header-height); padding: var(--space-sm) 0; }
       .toolbar-inner { flex-direction: column; align-items: stretch; }
-      .filter-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.4rem; }
+      .filter-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; }
       .filter-tabs::-webkit-scrollbar { height: 4px; }
-      .filter-tabs::-webkit-scrollbar-thumb { background: var(--wp-border); border-radius: 2px; }
+      .filter-tabs::-webkit-scrollbar-thumb { background: var(--color-gray-300); border-radius: 2px; }
       .filter-btn { flex-shrink: 0; }
       .search-box { flex: 1 1 100%; }
+
       .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
       .footer-desc { max-width: 100%; }
-      .scroll-top { bottom: 1rem; right: 1rem; }
+      .scroll-top { bottom: var(--space-md); right: var(--space-md); width: 44px; height: 44px; }
       .section { padding: var(--space-xl) 0; }
     }
 
-    @media (max-width: 480px) {
+    @media screen and (max-width: 480px) {
       .cta-actions { flex-direction: column; }
       .cta-actions .btn { width: 100%; }
       .info-banner { flex-direction: column; text-align: center; }
     }
+
+    /* ==========================================================================
+       16. REDUCED MOTION
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
-<body>
+<body class="loading">
 
-  <!-- ============================================================
+  <!-- ==========================================================================
+       LOADING SCREEN
+       ========================================================================== -->
+  <div id="loaderOverlay" class="loader-overlay">
+    <div class="loader-curtain">
+      <div class="curtain-left"></div>
+      <div class="curtain-right"></div>
+    </div>
+    <div class="loader-content">
+      <!-- Path logo disesuaikan -->
+      <img src="assets/images/logo.png" alt="O-Gut Logo" class="loader-logo">
+      <div class="skeleton-shimmer"></div>
+      <div class="loader-text">Menyiapkan Menu...</div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
        NAVBAR
-       ============================================================ -->
+       ========================================================================== -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="brand">
-        <i class="fa-solid fa-mug-hot"></i>
-        O-<span>Gut!</span>
+      <a href="index.html" class="brand" aria-label="O-Gut Home">
+        <!-- Path logo disesuaikan -->
+        <img src="assets/images/logo.png" alt="O-Gut! Logo">
       </a>
+      
       <div class="nav-menu" id="navMenu">
         <a href="index.html">Beranda</a>
         <a href="tentang.html">Tentang</a>
         <a href="menu.html" class="active">Menu</a>
         <a href="index.html#fasilitas">Fasilitas</a>
         <a href="index.html#testimoni">Testimoni</a>
-        <a href="kontak.html" class="btn btn-primary btn-sm nav-cta">
-          <i class="fa-solid fa-arrow-right"></i> Reservasi
+        
+        <a href="kontak.html" class="btn btn-reservation btn-sm nav-cta">
+          <i class="fa-solid fa-calendar-check"></i> Reservasi
+          <i class="fa-solid fa-arrow-right" style="margin-left: 4px; font-size: 0.8em;"></i>
         </a>
       </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      
+      <button class="nav-toggle" id="navToggle" aria-label="Buka Menu">
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
   </nav>
 
-  <!-- ============================================================
+  <!-- ==========================================================================
        PAGE HEADER
-       ============================================================ -->
+       ========================================================================== -->
   <section class="page-header">
     <div class="page-header-inner">
       <div class="breadcrumb">
@@ -926,10 +864,10 @@
     </div>
   </section>
 
-  <!-- ============================================================
+  <!-- ==========================================================================
        MENU TOOLBAR
-       ============================================================ -->
-  <div class="menu-toolbar">
+       ========================================================================== -->
+  <div class="menu-toolbar" id="menuToolbar">
     <div class="toolbar-inner">
       <div class="filter-tabs" id="filterTabs">
         <button class="filter-btn active" data-filter="all">
@@ -951,6 +889,7 @@
           <i class="fa-solid fa-ice-cream"></i> Dessert
         </button>
       </div>
+      
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" id="searchInput" placeholder="Cari menu..." aria-label="Cari menu">
@@ -958,13 +897,13 @@
     </div>
   </div>
 
-  <!-- ============================================================
+  <!-- ==========================================================================
        MENU CONTENT
-       ============================================================ -->
-  <section class="section" style="padding-top: 2rem;">
+       ========================================================================== -->
+  <section class="section" style="padding-top: var(--space-lg);">
     <div class="container">
 
-      <!-- ===== KOPI ===== -->
+      <!-- KOPI -->
       <div class="menu-section" data-category="kopi">
         <div class="menu-section-header">
           <div class="menu-section-icon"><i class="fa-solid fa-mug-saucer"></i></div>
@@ -1027,7 +966,7 @@
         </div>
       </div>
 
-      <!-- ===== NON-KOPI ===== -->
+      <!-- NON-KOPI -->
       <div class="menu-section" data-category="non-kopi">
         <div class="menu-section-header">
           <div class="menu-section-icon"><i class="fa-solid fa-glass-water"></i></div>
@@ -1079,7 +1018,7 @@
         </div>
       </div>
 
-      <!-- ===== MAKANAN ===== -->
+      <!-- MAKANAN -->
       <div class="menu-section" data-category="makanan">
         <div class="menu-section-header">
           <div class="menu-section-icon"><i class="fa-solid fa-utensils"></i></div>
@@ -1132,7 +1071,7 @@
         </div>
       </div>
 
-      <!-- ===== CAMILAN ===== -->
+      <!-- CAMILAN -->
       <div class="menu-section" data-category="camilan">
         <div class="menu-section-header">
           <div class="menu-section-icon"><i class="fa-solid fa-cookie-bite"></i></div>
@@ -1174,7 +1113,7 @@
         </div>
       </div>
 
-      <!-- ===== DESSERT ===== -->
+      <!-- DESSERT -->
       <div class="menu-section" data-category="dessert">
         <div class="menu-section-header">
           <div class="menu-section-icon"><i class="fa-solid fa-ice-cream"></i></div>
@@ -1216,15 +1155,15 @@
         </div>
       </div>
 
-      <!-- ===== EMPTY STATE ===== -->
+      <!-- EMPTY STATE -->
       <div class="empty-state" id="emptyState">
         <i class="fa-solid fa-magnifying-glass"></i>
         <h3>Menu Tidak Ditemukan</h3>
         <p>Maaf, tidak ada menu yang cocok dengan pencarian Anda.<br>Coba kata kunci atau kategori lain.</p>
       </div>
 
-      <!-- ===== INFO BANNER ===== -->
-      <div class="info-banner">
+      <!-- INFO BANNER -->
+      <div class="info-banner reveal">
         <i class="fa-solid fa-circle-info"></i>
         <div>
           <strong>Harga dapat berubah sewaktu-waktu</strong>
@@ -1235,22 +1174,20 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       CTA
-       ============================================================ -->
+  <!-- ==========================================================================
+       CTA SECTION
+       ========================================================================== -->
   <section class="cta-section">
     <div class="container">
-      <div class="cta-content fade-in">
-        <span class="section-label" style="color: var(--wp-gold-light);">Pesan Sekarang</span>
+      <div class="reveal">
+        <span class="section-label" style="background: transparent; border-color: var(--color-gray-800); color: var(--color-gray-400);">Pesan Sekarang</span>
         <h2>Sudah Menemukan Menu Favorit?</h2>
-        <p>
-          Pesan meja atau lakukan pemesanan antar melalui WhatsApp. Kami siap melayani Anda.
-        </p>
+        <p>Pesan meja atau lakukan pemesanan antar melalui WhatsApp. Kami siap melayani Anda.</p>
         <div class="cta-actions">
-          <a href="kontak.html" class="btn btn-gold btn-lg">
+          <a href="kontak.html" class="btn btn-outline-light btn-lg">
             <i class="fa-solid fa-calendar-check"></i> Reservasi Meja
           </a>
-          <a href="https://wa.me/628121787321" class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">
+          <a href="https://wa.me/628121787321" class="btn btn-primary btn-lg" target="_blank" rel="noopener" style="background: var(--color-white); color: var(--color-black); border-color: var(--color-white);">
             <i class="fa-brands fa-whatsapp"></i> Pesan Antar
           </a>
         </div>
@@ -1258,20 +1195,18 @@
     </div>
   </section>
 
-  <!-- ============================================================
+  <!-- ==========================================================================
        FOOTER
-       ============================================================ -->
+       ========================================================================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <div class="footer-brand">
-            <i class="fa-solid fa-mug-hot"></i>
-            O-<span>Gut!</span>
+            <!-- Path logo disesuaikan -->
+            <img src="assets/images/logo.png" alt="O-Gut Logo">
           </div>
-          <p class="footer-desc">
-            Cafe industrial minimalis di jantung kota Lumajang. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat.
-          </p>
+          <p class="footer-desc">Cafe industrial minimalis di jantung kota Lumajang. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat.</p>
           <div class="footer-social">
             <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -1291,7 +1226,7 @@
         <div class="footer-column">
           <h5>Layanan</h5>
           <ul>
-            <li><a href="#">Reservasi Meja</a></li>
+            <li><a href="kontak.html">Reservasi Meja</a></li>
             <li><a href="#">Pesan Antar</a></li>
             <li><a href="#">Event & Gathering</a></li>
             <li><a href="#">Live Music</a></li>
@@ -1315,163 +1250,171 @@
       </div>
       <div class="footer-bottom">
         <div>&copy; 2025 <strong>O-Gut! Lumajang</strong>. All rights reserved.</div>
-        <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--wp-gold);"></i> di Lumajang</div>
+        <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--color-gray-300);"></i> di Lumajang</div>
       </div>
     </div>
   </footer>
 
-  <!-- ============================================================
+  <!-- ==========================================================================
        SCROLL TO TOP
-       ============================================================ -->
-  <a href="#" class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+       ========================================================================== -->
+  <a href="#" class="scroll-top" id="scrollTop" aria-label="Kembali ke Atas">
     <i class="fa-solid fa-arrow-up"></i>
   </a>
 
-  <!-- ============================================================
-       JAVASCRIPT (INTERNAL)
-       ============================================================ -->
+  <!-- ==========================================================================
+       JAVASCRIPT (Internal)
+       ========================================================================== -->
   <script>
-    (function () {
-      'use strict';
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      /* ==========================================================================
+         1. LOADING SCREEN
+         ========================================================================== */
+      const loaderOverlay = document.getElementById('loaderOverlay');
+      const body = document.body;
 
-      /* ========== NAVBAR SCROLL ========== */
-      var navbar = document.getElementById('navbar');
-      var scrollTopBtn = document.getElementById('scrollTop');
+      setTimeout(() => {
+        loaderOverlay.classList.add('hidden');
+        body.classList.remove('loading');
+        setTimeout(() => { loaderOverlay.style.display = 'none'; }, 1200);
+      }, 1200);
 
-      function handleScroll() {
-        if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
-        if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-      }
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll();
+      /* ==========================================================================
+         2. NAVBAR SCROLL & SCROLL TO TOP
+         ========================================================================== */
+      const navbar = document.getElementById('navbar');
+      const scrollTopBtn = document.getElementById('scrollTop');
 
-      /* ========== MOBILE MENU ========== */
-      var navToggle = document.getElementById('navToggle');
-      var navMenu = document.getElementById('navMenu');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
 
-      if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function () {
-          navMenu.classList.toggle('open');
-          var icon = navToggle.querySelector('i');
-          if (icon) {
-            icon.className = navMenu.classList.contains('open')
-              ? 'fa-solid fa-xmark'
-              : 'fa-solid fa-bars';
-          }
+        if (window.scrollY > 400) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
+        }
+      });
+
+      /* ==========================================================================
+         3. MOBILE MENU TOGGLE
+         ========================================================================== */
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      const navIcon = navToggle.querySelector('i');
+
+      navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('open');
+        if (navMenu.classList.contains('open')) {
+          navIcon.classList.remove('fa-bars');
+          navIcon.classList.add('fa-xmark');
+        } else {
+          navIcon.classList.remove('fa-xmark');
+          navIcon.classList.add('fa-bars');
+        }
+      });
+
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          navMenu.classList.remove('open');
+          navIcon.classList.remove('fa-xmark');
+          navIcon.classList.add('fa-bars');
         });
-        navMenu.querySelectorAll('a').forEach(function (link) {
-          link.addEventListener('click', function () {
-            navMenu.classList.remove('open');
-            var icon = navToggle.querySelector('i');
-            if (icon) icon.className = 'fa-solid fa-bars';
-          });
-        });
-      }
+      });
 
-      /* ========== FILTER + SEARCH LOGIC ========== */
-      var filterBtns = document.querySelectorAll('.filter-btn');
-      var searchInput = document.getElementById('searchInput');
-      var menuItems = document.querySelectorAll('.menu-item');
-      var menuSections = document.querySelectorAll('.menu-section');
-      var emptyState = document.getElementById('emptyState');
+      /* ==========================================================================
+         4. FILTER & SEARCH LOGIC
+         ========================================================================== */
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const searchInput = document.getElementById('searchInput');
+      const menuItems = document.querySelectorAll('.menu-item');
+      const menuSections = document.querySelectorAll('.menu-section');
+      const emptyState = document.getElementById('emptyState');
 
-      var activeFilter = 'all';
-      var searchQuery = '';
+      let activeFilter = 'all';
+      let searchQuery = '';
 
       function applyFilters() {
-        var totalVisible = 0;
+        let totalVisible = 0;
 
-        // Filter per item
-        menuItems.forEach(function (item) {
-          var name = (item.getAttribute('data-name') || '').toLowerCase();
-          var cat = item.getAttribute('data-category') || '';
-          var matchFilter = (activeFilter === 'all' || cat === activeFilter);
-          var matchSearch = (searchQuery === '' || name.indexOf(searchQuery) !== -1);
-          var visible = matchFilter && matchSearch;
+        menuItems.forEach(item => {
+          const name = (item.getAttribute('data-name') || '').toLowerCase();
+          const cat = item.getAttribute('data-category') || '';
+          const matchFilter = (activeFilter === 'all' || cat === activeFilter);
+          const matchSearch = (searchQuery === '' || name.indexOf(searchQuery) !== -1);
+          const visible = matchFilter && matchSearch;
 
           item.classList.toggle('hidden', !visible);
           if (visible) totalVisible++;
         });
 
-        // Sembunyikan section jika tidak ada item terlihat di dalamnya
-        menuSections.forEach(function (section) {
-          var anyVisible = section.querySelector('.menu-item:not(.hidden)');
+        menuSections.forEach(section => {
+          const anyVisible = section.querySelector('.menu-item:not(.hidden)');
           section.style.display = anyVisible ? '' : 'none';
 
-          // Update count badge
-          var countEl = section.querySelector('.menu-section-count');
+          const countEl = section.querySelector('.menu-section-count');
           if (countEl) {
-            var visibleCount = section.querySelectorAll('.menu-item:not(.hidden)').length;
-            var totalCount = section.querySelectorAll('.menu-item').length;
+            const visibleCount = section.querySelectorAll('.menu-item:not(.hidden)').length;
+            const totalCount = section.querySelectorAll('.menu-item').length;
             countEl.textContent = visibleCount + ' dari ' + totalCount + ' item';
           }
         });
 
-        // Empty state
         if (emptyState) {
           emptyState.classList.toggle('visible', totalVisible === 0);
         }
       }
 
-      // Filter button click
-      filterBtns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           activeFilter = btn.getAttribute('data-filter');
           applyFilters();
         });
       });
 
-      // Search input (debounce sederhana)
       if (searchInput) {
-        var searchTimer = null;
-        searchInput.addEventListener('input', function () {
+        let searchTimer = null;
+        searchInput.addEventListener('input', function() {
           clearTimeout(searchTimer);
-          searchTimer = setTimeout(function () {
+          searchTimer = setTimeout(() => {
             searchQuery = searchInput.value.trim().toLowerCase();
             applyFilters();
-          }, 180);
+          }, 200);
         });
       }
 
-      // Init
       applyFilters();
 
-      /* ========== INTERSECTION OBSERVER ========== */
-      var animatedElements = document.querySelectorAll('.fade-in');
+      /* ==========================================================================
+         5. SCROLL REVEAL
+         ========================================================================== */
+      const revealElements = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
+              entry.target.classList.add('active');
               observer.unobserve(entry.target);
             }
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-        animatedElements.forEach(function (el) { observer.observe(el); });
+        revealElements.forEach(el => observer.observe(el));
       } else {
-        animatedElements.forEach(function (el) { el.classList.add('visible'); });
+        revealElements.forEach(el => el.classList.add('active'));
       }
 
-      /* ========== SMOOTH SCROLL ========== */
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener('click', function (e) {
-          var targetId = this.getAttribute('href');
-          if (targetId === '#' || targetId.length < 2) return;
-          var target = document.querySelector(targetId);
-          if (target) {
-            e.preventDefault();
-            var offset = 76;
-            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-          }
-        });
-      });
+      /* ==========================================================================
+         6. CONSOLE BRANDING
+         ========================================================================== */
+      console.log('%c O-Gut! Lumajang — Menu ', 'background: #000; color: #fff; font-size: 16px; font-weight: bold; padding: 8px 16px; border-radius: 4px;');
 
-      /* ========== CONSOLE BRANDING ========== */
-      console.log('%c O-Gut! Lumajang — Menu ', 'background: #1d2327; color: #b8860b; font-size: 18px; font-weight: bold; padding: 6px 12px; border-radius: 4px;');
-    })();
+    });
   </script>
 </body>
 </html>
