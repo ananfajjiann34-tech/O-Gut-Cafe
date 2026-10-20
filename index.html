@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O-Gut! Lumajang — Cafe industrial minimalis dengan suasana nyaman, cocok untuk nongkrong, kerja, dan bersantai di Lumajang.">
+  <meta name="keywords" content="cafe lumajang, o-gut lumajang, coffee shop lumajang, kafe industrial">
+  <meta name="author" content="O-Gut! Lumajang">
+  <title>O-Gut! Lumajang — Cafe Industrial Minimalis</title>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Playfair Display + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    :root {
+      /* WordPress-inspired palette */
+      --wp-black: #1d2327;
+      --wp-dark: #2c3338;
+      --wp-gray: #50575e;
+      --wp-gray-light: #787c82;
+      --wp-light: #f6f7f7;
+      --wp-white: #ffffff;
+      --wp-border: #dcdcde;
+      --wp-border-light: #f0f0f1;
+      --wp-accent: #2271b1;
+      --wp-accent-hover: #135e96;
+      --wp-gold: #b8860b;
+      --wp-gold-light: #d4a017;
+
+      /* Typography */
+      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-xxl: 6rem;
+
+      /* Container */
+      --container-max: 1200px;
+      --container-narrow: 860px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+      --transition-slow: 0.5s ease;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+      --shadow-xl: 0 24px 48px rgba(0,0,0,0.16);
+
+      /* Border radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--wp-gray);
+      background-color: var(--wp-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--wp-black);
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+    h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+    h4 { font-size: 1.2rem; }
+
+    p { margin-bottom: 1rem; }
+    a { color: var(--wp-accent); text-decoration: none; transition: color var(--transition-fast); }
+    a:hover { color: var(--wp-accent-hover); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul, ol { list-style: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ============================================================
+       UTILITY CLASSES
+       ============================================================ */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .container-narrow {
+      max-width: var(--container-narrow);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: var(--space-sm); }
+    .mb-2 { margin-bottom: var(--space-md); }
+    .mb-3 { margin-bottom: var(--space-lg); }
+    .mt-0 { margin-top: 0; }
+    .mt-1 { margin-top: var(--space-sm); }
+    .mt-2 { margin-top: var(--space-md); }
+    .mt-3 { margin-top: var(--space-lg); }
+
+    .section {
+      padding: var(--space-xxl) 0;
+    }
+    .section-sm {
+      padding: var(--space-xl) 0;
+    }
+    .section-alt {
+      background-color: var(--wp-light);
+    }
+    .section-dark {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+    }
+    .section-dark h1,
+    .section-dark h2,
+    .section-dark h3,
+    .section-dark h4 {
+      color: var(--wp-white);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--wp-gold);
+      margin-bottom: var(--space-sm);
+    }
+    .section-title {
+      margin-bottom: var(--space-sm);
+    }
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--wp-gray);
+      max-width: 640px;
+      margin: 0 auto var(--space-lg);
+    }
+    .section-dark .section-subtitle {
+      color: #a7aaad;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--wp-gold);
+      margin: var(--space-md) auto;
+    }
+    .divider-left {
+      margin-left: 0;
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      border-color: var(--wp-black);
+    }
+    .btn-primary:hover {
+      background-color: var(--wp-gold);
+      border-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--wp-black);
+      border-color: var(--wp-black);
+    }
+    .btn-outline:hover {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+    }
+    .btn-outline-light {
+      background-color: transparent;
+      color: var(--wp-white);
+      border-color: var(--wp-white);
+    }
+    .btn-outline-light:hover {
+      background-color: var(--wp-white);
+      color: var(--wp-black);
+      transform: translateY(-2px);
+    }
+    .btn-gold {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      border-color: var(--wp-gold);
+    }
+    .btn-gold:hover {
+      background-color: var(--wp-gold-light);
+      border-color: var(--wp-gold-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-sm {
+      padding: 0.6rem 1.4rem;
+      font-size: 0.8rem;
+    }
+    .btn-lg {
+      padding: 1.1rem 2.6rem;
+      font-size: 1rem;
+    }
+
+    /* ============================================================
+       NAVBAR
+       ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--wp-border-light);
+      transition: all var(--transition-base);
+    }
+    .navbar.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+    .navbar-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--wp-black);
+      letter-spacing: -0.02em;
+    }
+    .brand i {
+      color: var(--wp-gold);
+      font-size: 1.2rem;
+    }
+    .brand span {
+      color: var(--wp-gold);
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-menu a {
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--wp-gray);
+      letter-spacing: 0.01em;
+      padding: 0.5rem 0;
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--wp-gold);
+      transition: width var(--transition-base);
+    }
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--wp-black);
+    }
+    .nav-menu a:hover::after,
+    .nav-menu a.active::after {
+      width: 100%;
+    }
+    .nav-cta {
+      margin-left: 1rem;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--wp-black);
+      padding: 0.5rem;
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      background-color: #1d2327;
+      background-image: url('assets/images/Hero.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(29, 35, 39, 0.92) 0%,
+        rgba(29, 35, 39, 0.75) 45%,
+        rgba(29, 35, 39, 0.55) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(184,134,11,0.18) 0%, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(34,113,177,0.12) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      width: 100%;
+    }
+    .hero-content {
+      max-width: 760px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: rgba(184,134,11,0.15);
+      border: 1px solid rgba(184,134,11,0.3);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--wp-gold-light);
+      margin-bottom: var(--space-md);
+    }
+    .hero-badge i {
+      font-size: 0.7rem;
+    }
+    .hero h1 {
+      color: var(--wp-white);
+      margin-bottom: var(--space-md);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .hero h1 span {
+      color: var(--wp-gold);
+      font-style: italic;
+    }
+    .hero-description {
+      font-size: 1.15rem;
+      color: #a7aaad;
+      line-height: 1.7;
+      margin-bottom: var(--space-lg);
+      max-width: 600px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: var(--space-xl);
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--wp-white);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .hero-stat-number span {
+      color: var(--wp-gold);
+    }
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: #a7aaad;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,0.5);
+      font-size: 1.2rem;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+       ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #2c3338, #50575e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.3) 100%);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 2;
+      padding: 1rem 1.4rem;
+      background-color: var(--wp-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .about-badge i {
+      font-size: 1.6rem;
+      color: var(--wp-gold);
+    }
+    .about-badge-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .about-badge-text strong {
+      font-size: 1.1rem;
+      color: var(--wp-black);
+    }
+    .about-badge-text small {
+      font-size: 0.75rem;
+      color: var(--wp-gray);
+    }
+    .about-content h2 {
+      margin-bottom: var(--space-md);
+    }
+    .about-content p {
+      color: var(--wp-gray);
+      margin-bottom: var(--space-md);
+      font-size: 1.02rem;
+    }
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: var(--space-lg) 0;
+    }
+    .about-feature {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+    .about-feature i {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(184,134,11,0.1);
+      color: var(--wp-gold);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+    }
+    .about-feature div strong {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--wp-black);
+      margin-bottom: 0.15rem;
+    }
+    .about-feature div small {
+      font-size: 0.82rem;
+      color: var(--wp-gray-light);
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       MENU SECTION
+       ============================================================ */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .menu-card {
+      position: relative;
+      background-color: var(--wp-white);
+      border: 1px solid var(--wp-border-light);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.6rem;
+      transition: all var(--transition-base);
+      overflow: hidden;
+    }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: var(--wp-gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-base);
+    }
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .menu-card:hover::before {
+      transform: scaleX(1);
+    }
+    .menu-icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-light);
+      color: var(--wp-gold);
+      border-radius: var(--radius-md);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      transition: all var(--transition-base);
+    }
+    .menu-card:hover .menu-icon {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: rotate(-6deg);
+    }
+    .menu-card h4 {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--wp-black);
+      margin-bottom: 0.5rem;
+    }
+    .menu-card p {
+      font-size: 0.9rem;
+      color: var(--wp-gray);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .menu-price {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--wp-gold);
+      letter-spacing: 0.02em;
+    }
+    .menu-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.25rem 0.7rem;
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+    }
+
+    /* ============================================================
+       FEATURES / FASILITAS
+       ============================================================ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-item {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-radius: var(--radius-md);
+      background-color: var(--wp-white);
+      border: 1px solid var(--wp-border-light);
+      transition: all var(--transition-base);
+    }
+    .feature-item:hover {
+      border-color: var(--wp-gold);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(184,134,11,0.08);
+      color: var(--wp-gold);
+      border-radius: 50%;
+      font-size: 1.5rem;
+      transition: all var(--transition-base);
+    }
+    .feature-item:hover .feature-icon {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+    }
+    .feature-item h4 {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--wp-black);
+      margin-bottom: 0.3rem;
+    }
+    .feature-item p {
+      font-size: 0.82rem;
+      color: var(--wp-gray-light);
+      margin: 0;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+       ============================================================ */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background-color: var(--wp-white);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--wp-border-light);
+      position: relative;
+      transition: all var(--transition-base);
+    }
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .testimonial-stars {
+      color: var(--wp-gold);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+    .testimonial-text {
+      font-size: 0.98rem;
+      color: var(--wp-gray);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .testimonial-author-info strong {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--wp-black);
+    }
+    .testimonial-author-info small {
+      font-size: 0.78rem;
+      color: var(--wp-gray-light);
+    }
+
+    /* ============================================================
+       CTA SECTION
+       ============================================================ */
+    .cta-section {
+      position: relative;
+      padding: var(--space-xxl) 0;
+      background: linear-gradient(135deg, var(--wp-black) 0%, var(--wp-dark) 100%);
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(184,134,11,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .cta-content h2 {
+      color: var(--wp-white);
+      margin-bottom: var(--space-md);
+    }
+    .cta-content p {
+      color: #a7aaad;
+      font-size: 1.1rem;
+      margin-bottom: var(--space-lg);
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background-color: var(--wp-black);
+      color: #a7aaad;
+      padding: var(--space-xl) 0 var(--space-md);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    .footer-brand {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--wp-white);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-brand i {
+      color: var(--wp-gold);
+    }
+    .footer-brand span {
+      color: var(--wp-gold);
+    }
+    .footer-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: var(--space-md);
+      max-width: 320px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255,255,255,0.05);
+      color: #a7aaad;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+    }
+    .footer-social a:hover {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+    }
+    .footer-column h5 {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--wp-white);
+      margin-bottom: var(--space-md);
+    }
+    .footer-column ul li {
+      margin-bottom: 0.6rem;
+    }
+    .footer-column ul li a {
+      font-size: 0.9rem;
+      color: #a7aaad;
+      transition: color var(--transition-fast);
+    }
+    .footer-column ul li a:hover {
+      color: var(--wp-gold);
+    }
+    .footer-contact-item {
+      display: flex;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .footer-contact-item i {
+      color: var(--wp-gold);
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+    .footer-bottom {
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+    }
+    .footer-bottom a {
+      color: var(--wp-gold);
+    }
+
+    /* ============================================================
+       SCROLL TO TOP
+       ============================================================ */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all var(--transition-base);
+      z-index: 999;
+    }
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-top:hover {
+      background-color: var(--wp-gold);
+      transform: translateY(-4px);
+    }
+
+    /* ============================================================
+       ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 992px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background-color: var(--wp-white);
+        border-bottom: 1px solid var(--wp-border);
+        padding: 1rem 0;
+        transform: translateY(-150%);
+        transition: transform var(--transition-base);
+        box-shadow: var(--shadow-md);
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+      }
+      .nav-menu a {
+        padding: 0.9rem 1.5rem;
+      }
+      .nav-menu a::after {
+        display: none;
+      }
+      .nav-cta {
+        margin: 0.5rem 1.5rem 0;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      .hero {
+        min-height: auto;
+        padding: 120px 0 60px;
+      }
+      .hero-stats {
+        gap: 2rem;
+      }
+      .hero-stat-number {
+        font-size: 1.8rem;
+      }
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .footer-desc {
+        max-width: 100%;
+      }
+      .scroll-top {
+        bottom: 1rem;
+        right: 1rem;
+      }
+      .section {
+        padding: var(--space-xl) 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+      }
+      .hero-actions .btn {
+        width: 100%;
+      }
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .cta-actions {
+        flex-direction: column;
+      }
+      .cta-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="brand">
+        <i class="fa-solid fa-mug-hot"></i>
+        O-<span>Gut!</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="#hero" class="active">Beranda</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#menu">Menu</a>
+        <a href="#fasilitas">Fasilitas</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="kontak.html" class="btn btn-primary btn-sm nav-cta">
+          <i class="fa-solid fa-arrow-right"></i> Reservasi
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-star"></i>
+          Cafe Industrial Minimalis di Lumajang
+        </div>
+        <h1>
+          Nikmati Kopi Terbaik<br>
+          di <span>O-Gut! Lumajang</span>
+        </h1>
+        <p class="hero-description">
+          Suasana industrial yang hangat dengan sentuhan vintage. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat di jantung kota Lumajang.
+        </p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-gold btn-lg">
+            <i class="fa-solid fa-utensils"></i> Lihat Menu
+          </a>
+          <a href="kontak.html" class="btn btn-outline-light btn-lg">
+            <i class="fa-solid fa-location-dot"></i> Kunjungi Kami
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <div class="hero-stat-number"><span>50+</span></div>
+            <div class="hero-stat-label">Menu Pilihan</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-number"><span>4.8</span>★</div>
+            <div class="hero-stat-label">Rating Pelanggan</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-number"><span>12</span> Jam</div>
+            <div class="hero-stat-label">Buka Setiap Hari</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#tentang" class="hero-scroll" aria-label="Scroll down">
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="section" id="tentang">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image fade-in-left">
+          <i class="fa-solid fa-image" style="font-size: 3rem;"></i>
+          <div class="about-badge">
+            <i class="fa-solid fa-award"></i>
+            <div class="about-badge-text">
+              <strong>Sejak 2020</strong>
+              <small>Melayani Lumajang</small>
+            </div>
+          </div>
+        </div>
+        <div class="about-content fade-in-right">
+          <span class="section-label">Tentang Kami</span>
+          <h2>Lebih dari Sekadar<br>Tempat Ngopi</h2>
+          <div class="divider divider-left"></div>
+          <p>
+            O-Gut! mengusung konsep industrial yang dipadukan dengan sentuhan vintage dan dominasi warna putih minimalis. Interiornya dihiasi tanaman hidup di beberapa sudut untuk memberikan kesan segar dan nyaman.
+          </p>
+          <p>
+            Tersedia area indoor dan outdoor yang luas — cocok untuk bersantai sendiri, membaca buku, berkumpul dengan komunitas, atau nongkrong bersama teman.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <i class="fa-solid fa-wifi"></i>
+              <div>
+                <strong>Wi-Fi Gratis</strong>
+                <small>Koneksi cepat untuk bekerja</small>
+              </div>
+            </div>
+            <div class="about-feature">
+              <i class="fa-solid fa-plug"></i>
+              <div>
+                <strong>Colokan Listrik</strong>
+                <small>Tersedia di setiap meja</small>
+              </div>
+            </div>
+            <div class="about-feature">
+              <i class="fa-solid fa-tree"></i>
+              <div>
+                <strong>Indoor & Outdoor</strong>
+                <small>Area luas dan nyaman</small>
+              </div>
+            </div>
+            <div class="about-feature">
+              <i class="fa-solid fa-music"></i>
+              <div>
+                <strong>Live Music</strong>
+                <small>Setiap malam minggu</small>
+              </div>
+            </div>
+          </div>
+          <a href="tentang.html" class="btn btn-outline">
+            <i class="fa-solid fa-arrow-right"></i> Selengkapnya
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MENU
+       ============================================================ -->
+  <section class="section section-alt" id="menu">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">Menu Andalan</span>
+        <h2 class="section-title">Dari Kopi Hingga Makanan Berat</h2>
+        <p class="section-subtitle">
+          Pilihan menu lengkap yang siap memanjakan lidah Anda — dari kopi signature hingga hidangan utama.
+        </p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card fade-in">
+          <span class="menu-tag">Best Seller</span>
+          <div class="menu-icon">
+            <i class="fa-solid fa-bowl-rice"></i>
+          </div>
+          <h4>Rice Bowl Spicy Chicken</h4>
+          <p>Nasi hangat dengan ayam pedas spesial, pilihan favorit pengunjung untuk makan siang.</p>
+          <div class="menu-price">Rp 25.000</div>
+        </div>
+        <div class="menu-card fade-in delay-1">
+          <div class="menu-icon">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <h4>Pasta Olahan</h4>
+          <p>Olahan pasta dengan saus pilihan, cocok untuk makan santai bersama teman.</p>
+          <div class="menu-price">Rp 28.000</div>
+        </div>
+        <div class="menu-card fade-in delay-2">
+          <div class="menu-icon">
+            <i class="fa-solid fa-drumstick-bite"></i>
+          </div>
+          <h4>Chicken Fillet & Burger</h4>
+          <p>Chicken Fillet dan Chicken Burger yang renyah dan mengenyangkan.</p>
+          <div class="menu-price">Rp 30.000</div>
+        </div>
+        <div class="menu-card fade-in">
+          <span class="menu-tag">Signature</span>
+          <div class="menu-icon">
+            <i class="fa-solid fa-mug-saucer"></i>
+          </div>
+          <h4>Es Kopi Regal</h4>
+          <p>Signature coffee dengan rasa khas yang bikin nagih. Wajib dicoba!</p>
+          <div class="menu-price">Rp 20.000</div>
+        </div>
+        <div class="menu-card fade-in delay-1">
+          <div class="menu-icon">
+            <i class="fa-solid fa-glass-water"></i>
+          </div>
+          <h4>Ice Banana Ogut</h4>
+          <p>Minuman segar berbahan pisang, favorit di kalangan pengunjung.</p>
+          <div class="menu-price">Rp 18.000</div>
+        </div>
+        <div class="menu-card fade-in delay-2">
+          <div class="menu-icon">
+            <i class="fa-solid fa-cookie-bite"></i>
+          </div>
+          <h4>Camilan & Dessert</h4>
+          <p>French fries, brownies, dan es krim sebagai pendamping santai Anda.</p>
+          <div class="menu-price">Rp 15.000</div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: 3rem;">
+        <a href="menu.html" class="btn btn-primary">
+          <i class="fa-solid fa-book-open"></i> Lihat Menu Lengkap
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FASILITAS
+       ============================================================ -->
+  <section class="section" id="fasilitas">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">Fasilitas</span>
+        <h2 class="section-title">Kenyamanan untuk Anda</h2>
+        <p class="section-subtitle">
+          Kami menyediakan berbagai fasilitas untuk mendukung produktivitas dan kenyamanan Anda.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item fade-in">
+          <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
+          <h4>Wi-Fi Gratis</h4>
+          <p>Koneksi cepat</p>
+        </div>
+        <div class="feature-item fade-in delay-1">
+          <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
+          <h4>Colokan Listrik</h4>
+          <p>Di setiap meja</p>
+        </div>
+        <div class="feature-item fade-in delay-2">
+          <div class="feature-icon"><i class="fa-solid fa-square-parking"></i></div>
+          <h4>Area Parkir</h4>
+          <p>Luas & aman</p>
+        </div>
+        <div class="feature-item fade-in delay-3">
+          <div class="feature-icon"><i class="fa-solid fa-smoking"></i></div>
+          <h4>Ruang Merokok</h4>
+          <p>Area outdoor</p>
+        </div>
+        <div class="feature-item fade-in">
+          <div class="feature-icon"><i class="fa-solid fa-motorcycle"></i></div>
+          <h4>Pesan Antar</h4>
+          <p>Layanan delivery</p>
+        </div>
+        <div class="feature-item fade-in delay-1">
+          <div class="feature-icon"><i class="fa-solid fa-music"></i></div>
+          <h4>Live Music</h4>
+          <p>Malam minggu</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONI
+       ============================================================ -->
+  <section class="section section-alt" id="testimoni">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">Testimoni</span>
+        <h2 class="section-title">Apa Kata Mereka?</h2>
+        <p class="section-subtitle">
+          Pengalaman para pengunjung yang telah merasakan suasana O-Gut! Lumajang.
+        </p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "Tempatnya nyaman banget buat kerja. Wi-Fi cepat, colokan banyak, dan kopinya enak. Suasana industrial-nya bikin betah berlama-lama."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div class="testimonial-author-info">
+              <strong>Andi Pratama</strong>
+              <small>Freelancer</small>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in delay-1">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "Rice bowl spicy chicken-nya juara! Porsinya pas, rasanya mantap. Tempatnya juga bersih dan pelayanannya ramah."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div class="testimonial-author-info">
+              <strong>Siti Rahma</strong>
+              <small>Mahasiswa</small>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in delay-2">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p class="testimonial-text">
+            "Live music malam minggunya seru! Suasana outdoor-nya asik buat nongkrong bareng teman. Pasti balik lagi."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">B</div>
+            <div class="testimonial-author-info">
+              <strong>Budi Santoso</strong>
+              <small>Karyawan Swasta</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content fade-in">
+        <span class="section-label" style="color: var(--wp-gold-light);">Reservasi</span>
+        <h2>Pesan Tempat Anda Sekarang</h2>
+        <p>
+          Ingin mengadakan acara, gathering komunitas, atau sekadar reservasi meja? Hubungi kami dan kami akan menyiapkan tempat terbaik untuk Anda.
+        </p>
+        <div class="cta-actions">
+          <a href="kontak.html" class="btn btn-gold btn-lg">
+            <i class="fa-solid fa-calendar-check"></i> Reservasi Sekarang
+          </a>
+          <a href="https://wa.me/628121787321" class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <i class="fa-solid fa-mug-hot"></i>
+            O-<span>Gut!</span>
+          </div>
+          <p class="footer-desc">
+            Cafe industrial minimalis di jantung kota Lumajang. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h5>Navigasi</h5>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang.html">Tentang</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5>Layanan</h5>
+          <ul>
+            <li><a href="#">Reservasi Meja</a></li>
+            <li><a href="#">Pesan Antar</a></li>
+            <li><a href="#">Event & Gathering</a></li>
+            <li><a href="#">Live Music</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5>Kontak</h5>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Jl. Jendral Haryono No.44, Jogotrunan, Kec. Lumajang, Jawa Timur</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>0812-1787-321</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Setiap hari, 10.00 – 22.30 WIB</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2025 <strong>O-Gut! Lumajang</strong>. All rights reserved.</div>
+        <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--wp-gold);"></i> di Lumajang</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL TO TOP
+       ============================================================ -->
+  <a href="#hero" class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT (INTERNAL)
+       ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ========== NAVBAR SCROLL EFFECT ========== */
+      var navbar = document.getElementById('navbar');
+      var scrollTopBtn = document.getElementById('scrollTop');
+
+      function handleScroll() {
+        var scrolled = window.scrollY > 50;
+        if (navbar) {
+          navbar.classList.toggle('scrolled', scrolled);
+        }
+        if (scrollTopBtn) {
+          scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+        }
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+
+      /* ========== MOBILE MENU TOGGLE ========== */
+      var navToggle = document.getElementById('navToggle');
+      var navMenu = document.getElementById('navMenu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+          navMenu.classList.toggle('open');
+          var icon = navToggle.querySelector('i');
+          if (icon) {
+            var isOpen = navMenu.classList.contains('open');
+            icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+          }
+        });
+
+        navMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            navMenu.classList.remove('open');
+            var icon = navToggle.querySelector('i');
+            if (icon) icon.className = 'fa-solid fa-bars';
+          });
+        });
+      }
+
+      /* ========== SMOOTH SCROLL FOR ANCHOR LINKS ========== */
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var targetId = this.getAttribute('href');
+          if (targetId === '#' || targetId.length < 2) return;
+          var target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            var offset = 76;
+            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+      /* ========== ACTIVE NAV LINK ON SCROLL ========== */
+      var sections = document.querySelectorAll('section[id]');
+      var navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+      function updateActiveLink() {
+        var scrollPos = window.scrollY + 100;
+        sections.forEach(function (section) {
+          var top = section.offsetTop;
+          var height = section.offsetHeight;
+          var id = section.getAttribute('id');
+          if (scrollPos >= top && scrollPos < top + height) {
+            navLinks.forEach(function (link) {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+      window.addEventListener('scroll', updateActiveLink, { passive: true });
+
+      /* ========== INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS ========== */
+      var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        animatedElements.forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        animatedElements.forEach(function (el) {
+          el.classList.add('visible');
+        });
+      }
+
+      /* ========== COUNTER ANIMATION FOR HERO STATS ========== */
+      function animateCounter(el, target, duration) {
+        var start = 0;
+        var startTime = null;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var value = Math.floor(progress * (target - start) + start);
+          el.textContent = value;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      /* ========== LAZY LOAD IMAGES (FALLBACK) ========== */
+      if ('loading' in HTMLImageElement.prototype) {
+        document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+          img.src = img.dataset.src || img.src;
+        });
+      }
+
+      /* ========== YEAR AUTO-UPDATE ========== */
+      var yearEls = document.querySelectorAll('.current-year');
+      yearEls.forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+
+      /* ========== CONSOLE BRANDING ========== */
+      console.log('%c O-Gut! Lumajang ', 'background: #1d2327; color: #b8860b; font-size: 20px; font-weight: bold; padding: 8px 16px; border-radius: 4px;');
+      console.log('%c Cafe Industrial Minimalis — Jl. Jendral Haryono No.44, Lumajang ', 'color: #50575e; font-size: 12px;');
+    })();
+  </script>
+</body>
+</html>

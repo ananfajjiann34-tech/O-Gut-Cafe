@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Menu lengkap O-Gut! Lumajang — kopi signature, non-kopi, makanan berat, camilan, dan dessert. Filter kategori dan cari menu favorit Anda.">
+  <meta name="keywords" content="menu o-gut lumajang, kopi lumajang, rice bowl lumajang, cafe menu">
+  <meta name="author" content="O-Gut! Lumajang">
+  <title>Menu — O-Gut! Lumajang</title>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    :root {
+      --wp-black: #1d2327;
+      --wp-dark: #2c3338;
+      --wp-gray: #50575e;
+      --wp-gray-light: #787c82;
+      --wp-light: #f6f7f7;
+      --wp-white: #ffffff;
+      --wp-border: #dcdcde;
+      --wp-border-light: #f0f0f1;
+      --wp-accent: #2271b1;
+      --wp-accent-hover: #135e96;
+      --wp-gold: #b8860b;
+      --wp-gold-light: #d4a017;
+
+      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-xxl: 6rem;
+
+      --container-max: 1200px;
+      --container-narrow: 860px;
+
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+      --transition-slow: 0.5s ease;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+      --shadow-xl: 0 24px 48px rgba(0,0,0,0.16);
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--wp-gray);
+      background-color: var(--wp-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--wp-black);
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+    h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+    h4 { font-size: 1.2rem; }
+
+    p { margin-bottom: 1rem; }
+    a { color: var(--wp-accent); text-decoration: none; transition: color var(--transition-fast); }
+    a:hover { color: var(--wp-accent-hover); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul, ol { list-style: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ============================================================
+       UTILITY
+       ============================================================ */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .container-narrow {
+      max-width: var(--container-narrow);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: var(--space-sm); }
+    .mb-2 { margin-bottom: var(--space-md); }
+    .mb-3 { margin-bottom: var(--space-lg); }
+    .mt-0 { margin-top: 0; }
+    .mt-1 { margin-top: var(--space-sm); }
+    .mt-2 { margin-top: var(--space-md); }
+    .mt-3 { margin-top: var(--space-lg); }
+
+    .section { padding: var(--space-xxl) 0; }
+    .section-sm { padding: var(--space-xl) 0; }
+    .section-alt { background-color: var(--wp-light); }
+    .section-dark {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+    }
+    .section-dark h1,
+    .section-dark h2,
+    .section-dark h3,
+    .section-dark h4 { color: var(--wp-white); }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--wp-gold);
+      margin-bottom: var(--space-sm);
+    }
+    .section-title { margin-bottom: var(--space-sm); }
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--wp-gray);
+      max-width: 640px;
+      margin: 0 auto var(--space-lg);
+    }
+    .section-dark .section-subtitle { color: #a7aaad; }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--wp-gold);
+      margin: var(--space-md) auto;
+    }
+    .divider-left { margin-left: 0; }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      border-color: var(--wp-black);
+    }
+    .btn-primary:hover {
+      background-color: var(--wp-gold);
+      border-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--wp-black);
+      border-color: var(--wp-black);
+    }
+    .btn-outline:hover {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+    }
+    .btn-outline-light {
+      background-color: transparent;
+      color: var(--wp-white);
+      border-color: var(--wp-white);
+    }
+    .btn-outline-light:hover {
+      background-color: var(--wp-white);
+      color: var(--wp-black);
+      transform: translateY(-2px);
+    }
+    .btn-gold {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      border-color: var(--wp-gold);
+    }
+    .btn-gold:hover {
+      background-color: var(--wp-gold-light);
+      border-color: var(--wp-gold-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.8rem; }
+    .btn-lg { padding: 1.1rem 2.6rem; font-size: 1rem; }
+
+    /* ============================================================
+       NAVBAR
+       ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--wp-border-light);
+      transition: all var(--transition-base);
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-sm); }
+    .navbar-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--wp-black);
+      letter-spacing: -0.02em;
+    }
+    .brand i { color: var(--wp-gold); font-size: 1.2rem; }
+    .brand span { color: var(--wp-gold); }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-menu a {
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--wp-gray);
+      letter-spacing: 0.01em;
+      padding: 0.5rem 0;
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--wp-gold);
+      transition: width var(--transition-base);
+    }
+    .nav-menu a:hover,
+    .nav-menu a.active { color: var(--wp-black); }
+    .nav-menu a:hover::after,
+    .nav-menu a.active::after { width: 100%; }
+    .nav-cta { margin-left: 1rem; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--wp-black);
+      padding: 0.5rem;
+    }
+
+    /* ============================================================
+       PAGE HEADER
+       ============================================================ */
+    .page-header {
+      position: relative;
+      padding: 160px 0 80px;
+      background: linear-gradient(135deg, #1d2327 0%, #2c3338 50%, #1d2327 100%);
+      overflow: hidden;
+      text-align: center;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(184,134,11,0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(34,113,177,0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .page-header-inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: #a7aaad;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .breadcrumb a { color: #a7aaad; }
+    .breadcrumb a:hover { color: var(--wp-gold); }
+    .breadcrumb i { font-size: 0.6rem; color: var(--wp-gold); }
+    .page-header h1 {
+      color: var(--wp-white);
+      margin-bottom: var(--space-sm);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .page-header h1 span { color: var(--wp-gold); font-style: italic; }
+    .page-header p {
+      color: #a7aaad;
+      font-size: 1.1rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       MENU TOOLBAR (Filter + Search)
+       ============================================================ */
+    .menu-toolbar {
+      position: sticky;
+      top: 76px;
+      z-index: 90;
+      background-color: rgba(246,247,247,0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--wp-border);
+      padding: 1.2rem 0;
+      margin-bottom: var(--space-lg);
+    }
+    .toolbar-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--wp-white);
+      border: 1px solid var(--wp-border);
+      border-radius: var(--radius-full);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--wp-gray);
+      letter-spacing: 0.02em;
+      transition: all var(--transition-base);
+    }
+    .filter-btn i { font-size: 0.75rem; }
+    .filter-btn:hover {
+      border-color: var(--wp-gold);
+      color: var(--wp-black);
+      transform: translateY(-1px);
+    }
+    .filter-btn.active {
+      background-color: var(--wp-black);
+      border-color: var(--wp-black);
+      color: var(--wp-white);
+    }
+    .filter-btn.active i { color: var(--wp-gold); }
+    .search-box {
+      position: relative;
+      flex: 0 1 280px;
+      min-width: 200px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.4rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--wp-black);
+      background-color: var(--wp-white);
+      border: 1px solid var(--wp-border);
+      border-radius: var(--radius-full);
+      outline: none;
+      transition: all var(--transition-base);
+    }
+    .search-box input:focus {
+      border-color: var(--wp-gold);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.12);
+    }
+    .search-box input::placeholder { color: var(--wp-gray-light); }
+    .search-box i {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--wp-gray-light);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       MENU SECTION HEADER
+       ============================================================ */
+    .menu-section {
+      padding-bottom: var(--space-xl);
+    }
+    .menu-section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--wp-border-light);
+    }
+    .menu-section-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .menu-section-title {
+      font-family: var(--font-body);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--wp-black);
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .menu-section-count {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--wp-gray-light);
+      background-color: var(--wp-light);
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-full);
+      margin-left: auto;
+    }
+
+    /* ============================================================
+       MENU LIST (Item style)
+       ============================================================ */
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem 2.5rem;
+    }
+    .menu-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px dashed var(--wp-border-light);
+      transition: all var(--transition-base);
+      opacity: 1;
+    }
+    .menu-item:hover {
+      border-bottom-color: var(--wp-gold);
+    }
+    .menu-item.hidden {
+      display: none;
+    }
+    .menu-item-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-light);
+      color: var(--wp-gold);
+      border-radius: var(--radius-md);
+      font-size: 1.1rem;
+      transition: all var(--transition-base);
+    }
+    .menu-item:hover .menu-item-icon {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: rotate(-6deg);
+    }
+    .menu-item-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .menu-item-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    .menu-item-name {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--wp-black);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .menu-item-price {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--wp-gold);
+      white-space: nowrap;
+    }
+    .menu-item-desc {
+      font-size: 0.85rem;
+      color: var(--wp-gray);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .menu-item-tag {
+      display: inline-block;
+      margin-top: 0.4rem;
+      padding: 0.15rem 0.55rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--wp-white);
+      background-color: var(--wp-black);
+      border-radius: var(--radius-full);
+    }
+    .menu-item-tag.tag-signature { background-color: var(--wp-gold); }
+    .menu-item-tag.tag-best { background-color: var(--wp-accent); }
+    .menu-item-tag.tag-new { background-color: #2e7d32; }
+    .menu-item-tag.tag-spicy { background-color: #c62828; }
+
+    /* ============================================================
+       EMPTY STATE
+       ============================================================ */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+    }
+    .empty-state.visible { display: block; }
+    .empty-state i {
+      font-size: 3rem;
+      color: var(--wp-border);
+      margin-bottom: var(--space-md);
+    }
+    .empty-state h3 {
+      font-size: 1.3rem;
+      color: var(--wp-black);
+      margin-bottom: 0.5rem;
+    }
+    .empty-state p {
+      color: var(--wp-gray);
+      font-size: 0.95rem;
+    }
+
+    /* ============================================================
+       INFO BANNER
+       ============================================================ */
+    .info-banner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      background-color: rgba(184,134,11,0.08);
+      border: 1px solid rgba(184,134,11,0.2);
+      border-radius: var(--radius-md);
+      margin-top: var(--space-lg);
+    }
+    .info-banner i {
+      font-size: 1.4rem;
+      color: var(--wp-gold);
+      flex-shrink: 0;
+    }
+    .info-banner div strong {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--wp-black);
+      margin-bottom: 0.15rem;
+    }
+    .info-banner div small {
+      font-size: 0.82rem;
+      color: var(--wp-gray);
+    }
+
+    /* ============================================================
+       CTA SECTION
+       ============================================================ */
+    .cta-section {
+      position: relative;
+      padding: var(--space-xxl) 0;
+      background: linear-gradient(135deg, var(--wp-black) 0%, var(--wp-dark) 100%);
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(184,134,11,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .cta-content h2 {
+      color: var(--wp-white);
+      margin-bottom: var(--space-md);
+    }
+    .cta-content p {
+      color: #a7aaad;
+      font-size: 1.1rem;
+      margin-bottom: var(--space-lg);
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background-color: var(--wp-black);
+      color: #a7aaad;
+      padding: var(--space-xl) 0 var(--space-md);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    .footer-brand {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--wp-white);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-brand i { color: var(--wp-gold); }
+    .footer-brand span { color: var(--wp-gold); }
+    .footer-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: var(--space-md);
+      max-width: 320px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255,255,255,0.05);
+      color: #a7aaad;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+    }
+    .footer-social a:hover {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+    }
+    .footer-column h5 {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--wp-white);
+      margin-bottom: var(--space-md);
+    }
+    .footer-column ul li { margin-bottom: 0.6rem; }
+    .footer-column ul li a {
+      font-size: 0.9rem;
+      color: #a7aaad;
+      transition: color var(--transition-fast);
+    }
+    .footer-column ul li a:hover { color: var(--wp-gold); }
+    .footer-contact-item {
+      display: flex;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .footer-contact-item i {
+      color: var(--wp-gold);
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+    .footer-bottom {
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+    }
+    .footer-bottom a { color: var(--wp-gold); }
+
+    /* ============================================================
+       SCROLL TO TOP
+       ============================================================ */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all var(--transition-base);
+      z-index: 999;
+    }
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-top:hover {
+      background-color: var(--wp-gold);
+      transform: translateY(-4px);
+    }
+
+    /* ============================================================
+       ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 992px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .menu-list { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background-color: var(--wp-white);
+        border-bottom: 1px solid var(--wp-border);
+        padding: 1rem 0;
+        transform: translateY(-150%);
+        transition: transform var(--transition-base);
+        box-shadow: var(--shadow-md);
+      }
+      .nav-menu.open { transform: translateY(0); }
+      .nav-menu a { padding: 0.9rem 1.5rem; }
+      .nav-menu a::after { display: none; }
+      .nav-cta { margin: 0.5rem 1.5rem 0; }
+      .nav-toggle { display: block; }
+      .page-header { padding: 130px 0 60px; }
+      .menu-toolbar { top: 76px; padding: 1rem 0; }
+      .toolbar-inner { flex-direction: column; align-items: stretch; }
+      .filter-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.4rem; }
+      .filter-tabs::-webkit-scrollbar { height: 4px; }
+      .filter-tabs::-webkit-scrollbar-thumb { background: var(--wp-border); border-radius: 2px; }
+      .filter-btn { flex-shrink: 0; }
+      .search-box { flex: 1 1 100%; }
+      .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .footer-desc { max-width: 100%; }
+      .scroll-top { bottom: 1rem; right: 1rem; }
+      .section { padding: var(--space-xl) 0; }
+    }
+
+    @media (max-width: 480px) {
+      .cta-actions { flex-direction: column; }
+      .cta-actions .btn { width: 100%; }
+      .info-banner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="brand">
+        <i class="fa-solid fa-mug-hot"></i>
+        O-<span>Gut!</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="menu.html" class="active">Menu</a>
+        <a href="index.html#fasilitas">Fasilitas</a>
+        <a href="index.html#testimoni">Testimoni</a>
+        <a href="kontak.html" class="btn btn-primary btn-sm nav-cta">
+          <i class="fa-solid fa-arrow-right"></i> Reservasi
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       PAGE HEADER
+       ============================================================ -->
+  <section class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Menu</span>
+      </div>
+      <h1>Menu <span>O-Gut!</span> Lumajang</h1>
+      <p>Dari kopi signature hingga hidangan utama — temukan favorit Anda dari koleksi menu pilihan kami.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MENU TOOLBAR
+       ============================================================ -->
+  <div class="menu-toolbar">
+    <div class="toolbar-inner">
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fa-solid fa-border-all"></i> Semua
+        </button>
+        <button class="filter-btn" data-filter="kopi">
+          <i class="fa-solid fa-mug-saucer"></i> Kopi
+        </button>
+        <button class="filter-btn" data-filter="non-kopi">
+          <i class="fa-solid fa-glass-water"></i> Non-Kopi
+        </button>
+        <button class="filter-btn" data-filter="makanan">
+          <i class="fa-solid fa-utensils"></i> Makanan
+        </button>
+        <button class="filter-btn" data-filter="camilan">
+          <i class="fa-solid fa-cookie-bite"></i> Camilan
+        </button>
+        <button class="filter-btn" data-filter="dessert">
+          <i class="fa-solid fa-ice-cream"></i> Dessert
+        </button>
+      </div>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Cari menu..." aria-label="Cari menu">
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MENU CONTENT
+       ============================================================ -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container">
+
+      <!-- ===== KOPI ===== -->
+      <div class="menu-section" data-category="kopi">
+        <div class="menu-section-header">
+          <div class="menu-section-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+          <h2 class="menu-section-title">Kopi</h2>
+          <span class="menu-section-count">5 item</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item" data-name="es kopi regal" data-category="kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Es Kopi Regal</span>
+                <span class="menu-item-price">Rp 20.000</span>
+              </div>
+              <p class="menu-item-desc">Signature coffee dengan rasa khas yang bikin nagih. Wajib dicoba!</p>
+              <span class="menu-item-tag tag-signature">Signature</span>
+            </div>
+          </div>
+          <div class="menu-item" data-name="americano" data-category="kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Americano</span>
+                <span class="menu-item-price">Rp 18.000</span>
+              </div>
+              <p class="menu-item-desc">Espresso dengan air panas, disajikan panas atau dingin.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="cappuccino" data-category="kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Cappuccino</span>
+                <span class="menu-item-price">Rp 22.000</span>
+              </div>
+              <p class="menu-item-desc">Espresso dengan steamed milk dan foam tebal yang lembut.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="latte" data-category="kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Cafe Latte</span>
+                <span class="menu-item-price">Rp 22.000</span>
+              </div>
+              <p class="menu-item-desc">Espresso dengan susu steamed yang creamy dan lembut.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="kopi susu gula aren" data-category="kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Kopi Susu Gula Aren</span>
+                <span class="menu-item-price">Rp 21.000</span>
+              </div>
+              <p class="menu-item-desc">Perpaduan espresso, susu, dan gula aren asli.</p>
+              <span class="menu-item-tag tag-best">Best Seller</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NON-KOPI ===== -->
+      <div class="menu-section" data-category="non-kopi">
+        <div class="menu-section-header">
+          <div class="menu-section-icon"><i class="fa-solid fa-glass-water"></i></div>
+          <h2 class="menu-section-title">Non-Kopi</h2>
+          <span class="menu-section-count">4 item</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item" data-name="ice banana ogut" data-category="non-kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Ice Banana Ogut</span>
+                <span class="menu-item-price">Rp 18.000</span>
+              </div>
+              <p class="menu-item-desc">Minuman segar berbahan pisang, favorit di kalangan pengunjung.</p>
+              <span class="menu-item-tag tag-signature">Signature</span>
+            </div>
+          </div>
+          <div class="menu-item" data-name="matcha latte" data-category="non-kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Matcha Latte</span>
+                <span class="menu-item-price">Rp 23.000</span>
+              </div>
+              <p class="menu-item-desc">Matcha premium dengan susu segar, tersedia panas atau dingin.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="chocolate" data-category="non-kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Chocolate</span>
+                <span class="menu-item-price">Rp 20.000</span>
+              </div>
+              <p class="menu-item-desc">Cokelat premium yang kental dan manis, cocok untuk segala suasana.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="es teh lemon" data-category="non-kopi">
+            <div class="menu-item-icon"><i class="fa-solid fa-lemon"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Es Teh Lemon</span>
+                <span class="menu-item-price">Rp 15.000</span>
+              </div>
+              <p class="menu-item-desc">Teh segar dengan perasan lemon asli, pelepas dahaga.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== MAKANAN ===== -->
+      <div class="menu-section" data-category="makanan">
+        <div class="menu-section-header">
+          <div class="menu-section-icon"><i class="fa-solid fa-utensils"></i></div>
+          <h2 class="menu-section-title">Makanan</h2>
+          <span class="menu-section-count">4 item</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item" data-name="rice bowl spicy chicken" data-category="makanan">
+            <div class="menu-item-icon"><i class="fa-solid fa-bowl-rice"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Rice Bowl Spicy Chicken</span>
+                <span class="menu-item-price">Rp 25.000</span>
+              </div>
+              <p class="menu-item-desc">Nasi hangat dengan ayam pedas spesial, pilihan favorit pengunjung.</p>
+              <span class="menu-item-tag tag-best">Best Seller</span>
+              <span class="menu-item-tag tag-spicy">Spicy</span>
+            </div>
+          </div>
+          <div class="menu-item" data-name="pasta" data-category="makanan">
+            <div class="menu-item-icon"><i class="fa-solid fa-utensils"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Pasta Olahan</span>
+                <span class="menu-item-price">Rp 28.000</span>
+              </div>
+              <p class="menu-item-desc">Olahan pasta dengan saus pilihan, cocok untuk makan santai.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="chicken fillet" data-category="makanan">
+            <div class="menu-item-icon"><i class="fa-solid fa-drumstick-bite"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Chicken Fillet</span>
+                <span class="menu-item-price">Rp 30.000</span>
+              </div>
+              <p class="menu-item-desc">Fillet ayam renyah dengan saus pilihan dan kentang goreng.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="chicken burger" data-category="makanan">
+            <div class="menu-item-icon"><i class="fa-solid fa-burger"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Chicken Burger</span>
+                <span class="menu-item-price">Rp 28.000</span>
+              </div>
+              <p class="menu-item-desc">Burger ayam dengan roti lembut dan sayuran segar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CAMILAN ===== -->
+      <div class="menu-section" data-category="camilan">
+        <div class="menu-section-header">
+          <div class="menu-section-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+          <h2 class="menu-section-title">Camilan</h2>
+          <span class="menu-section-count">3 item</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item" data-name="french fries" data-category="camilan">
+            <div class="menu-item-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">French Fries</span>
+                <span class="menu-item-price">Rp 15.000</span>
+              </div>
+              <p class="menu-item-desc">Kentang goreng renyah dengan saus pilihan.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="onion ring" data-category="camilan">
+            <div class="menu-item-icon"><i class="fa-solid fa-circle"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Onion Ring</span>
+                <span class="menu-item-price">Rp 17.000</span>
+              </div>
+              <p class="menu-item-desc">Bawang bombay goreng tepung, renyah dan gurih.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="chicken wings" data-category="camilan">
+            <div class="menu-item-icon"><i class="fa-solid fa-drumstick-bite"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Chicken Wings</span>
+                <span class="menu-item-price">Rp 25.000</span>
+              </div>
+              <p class="menu-item-desc">Sayap ayam dengan saus pilihan, cocok untuk berbagi.</p>
+              <span class="menu-item-tag tag-new">Baru</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== DESSERT ===== -->
+      <div class="menu-section" data-category="dessert">
+        <div class="menu-section-header">
+          <div class="menu-section-icon"><i class="fa-solid fa-ice-cream"></i></div>
+          <h2 class="menu-section-title">Dessert</h2>
+          <span class="menu-section-count">3 item</span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item" data-name="brownies" data-category="dessert">
+            <div class="menu-item-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Brownies</span>
+                <span class="menu-item-price">Rp 18.000</span>
+              </div>
+              <p class="menu-item-desc">Brownies cokelat lembut dengan topping kacang.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="es krim" data-category="dessert">
+            <div class="menu-item-icon"><i class="fa-solid fa-ice-cream"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Es Krim</span>
+                <span class="menu-item-price">Rp 15.000</span>
+              </div>
+              <p class="menu-item-desc">Es krim dengan berbagai pilihan rasa.</p>
+            </div>
+          </div>
+          <div class="menu-item" data-name="pancake" data-category="dessert">
+            <div class="menu-item-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <div class="menu-item-body">
+              <div class="menu-item-header">
+                <span class="menu-item-name">Pancake</span>
+                <span class="menu-item-price">Rp 20.000</span>
+              </div>
+              <p class="menu-item-desc">Pancake lembut dengan sirup maple dan mentega.</p>
+              <span class="menu-item-tag tag-new">Baru</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== EMPTY STATE ===== -->
+      <div class="empty-state" id="emptyState">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h3>Menu Tidak Ditemukan</h3>
+        <p>Maaf, tidak ada menu yang cocok dengan pencarian Anda.<br>Coba kata kunci atau kategori lain.</p>
+      </div>
+
+      <!-- ===== INFO BANNER ===== -->
+      <div class="info-banner">
+        <i class="fa-solid fa-circle-info"></i>
+        <div>
+          <strong>Harga dapat berubah sewaktu-waktu</strong>
+          <small>Semua harga sudah termasuk pajak. Untuk informasi menu terbaru, silakan hubungi kami langsung.</small>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content fade-in">
+        <span class="section-label" style="color: var(--wp-gold-light);">Pesan Sekarang</span>
+        <h2>Sudah Menemukan Menu Favorit?</h2>
+        <p>
+          Pesan meja atau lakukan pemesanan antar melalui WhatsApp. Kami siap melayani Anda.
+        </p>
+        <div class="cta-actions">
+          <a href="kontak.html" class="btn btn-gold btn-lg">
+            <i class="fa-solid fa-calendar-check"></i> Reservasi Meja
+          </a>
+          <a href="https://wa.me/628121787321" class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Pesan Antar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <i class="fa-solid fa-mug-hot"></i>
+            O-<span>Gut!</span>
+          </div>
+          <p class="footer-desc">
+            Cafe industrial minimalis di jantung kota Lumajang. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h5>Navigasi</h5>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang.html">Tentang</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5>Layanan</h5>
+          <ul>
+            <li><a href="#">Reservasi Meja</a></li>
+            <li><a href="#">Pesan Antar</a></li>
+            <li><a href="#">Event & Gathering</a></li>
+            <li><a href="#">Live Music</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5>Kontak</h5>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Jl. Jendral Haryono No.44, Jogotrunan, Kec. Lumajang, Jawa Timur</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>0812-1787-321</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Setiap hari, 10.00 – 22.30 WIB</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2025 <strong>O-Gut! Lumajang</strong>. All rights reserved.</div>
+        <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--wp-gold);"></i> di Lumajang</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL TO TOP
+       ============================================================ -->
+  <a href="#" class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT (INTERNAL)
+       ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ========== NAVBAR SCROLL ========== */
+      var navbar = document.getElementById('navbar');
+      var scrollTopBtn = document.getElementById('scrollTop');
+
+      function handleScroll() {
+        if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+        if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+
+      /* ========== MOBILE MENU ========== */
+      var navToggle = document.getElementById('navToggle');
+      var navMenu = document.getElementById('navMenu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+          navMenu.classList.toggle('open');
+          var icon = navToggle.querySelector('i');
+          if (icon) {
+            icon.className = navMenu.classList.contains('open')
+              ? 'fa-solid fa-xmark'
+              : 'fa-solid fa-bars';
+          }
+        });
+        navMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            navMenu.classList.remove('open');
+            var icon = navToggle.querySelector('i');
+            if (icon) icon.className = 'fa-solid fa-bars';
+          });
+        });
+      }
+
+      /* ========== FILTER + SEARCH LOGIC ========== */
+      var filterBtns = document.querySelectorAll('.filter-btn');
+      var searchInput = document.getElementById('searchInput');
+      var menuItems = document.querySelectorAll('.menu-item');
+      var menuSections = document.querySelectorAll('.menu-section');
+      var emptyState = document.getElementById('emptyState');
+
+      var activeFilter = 'all';
+      var searchQuery = '';
+
+      function applyFilters() {
+        var totalVisible = 0;
+
+        // Filter per item
+        menuItems.forEach(function (item) {
+          var name = (item.getAttribute('data-name') || '').toLowerCase();
+          var cat = item.getAttribute('data-category') || '';
+          var matchFilter = (activeFilter === 'all' || cat === activeFilter);
+          var matchSearch = (searchQuery === '' || name.indexOf(searchQuery) !== -1);
+          var visible = matchFilter && matchSearch;
+
+          item.classList.toggle('hidden', !visible);
+          if (visible) totalVisible++;
+        });
+
+        // Sembunyikan section jika tidak ada item terlihat di dalamnya
+        menuSections.forEach(function (section) {
+          var anyVisible = section.querySelector('.menu-item:not(.hidden)');
+          section.style.display = anyVisible ? '' : 'none';
+
+          // Update count badge
+          var countEl = section.querySelector('.menu-section-count');
+          if (countEl) {
+            var visibleCount = section.querySelectorAll('.menu-item:not(.hidden)').length;
+            var totalCount = section.querySelectorAll('.menu-item').length;
+            countEl.textContent = visibleCount + ' dari ' + totalCount + ' item';
+          }
+        });
+
+        // Empty state
+        if (emptyState) {
+          emptyState.classList.toggle('visible', totalVisible === 0);
+        }
+      }
+
+      // Filter button click
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeFilter = btn.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+
+      // Search input (debounce sederhana)
+      if (searchInput) {
+        var searchTimer = null;
+        searchInput.addEventListener('input', function () {
+          clearTimeout(searchTimer);
+          searchTimer = setTimeout(function () {
+            searchQuery = searchInput.value.trim().toLowerCase();
+            applyFilters();
+          }, 180);
+        });
+      }
+
+      // Init
+      applyFilters();
+
+      /* ========== INTERSECTION OBSERVER ========== */
+      var animatedElements = document.querySelectorAll('.fade-in');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        animatedElements.forEach(function (el) { observer.observe(el); });
+      } else {
+        animatedElements.forEach(function (el) { el.classList.add('visible'); });
+      }
+
+      /* ========== SMOOTH SCROLL ========== */
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var targetId = this.getAttribute('href');
+          if (targetId === '#' || targetId.length < 2) return;
+          var target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            var offset = 76;
+            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+      /* ========== CONSOLE BRANDING ========== */
+      console.log('%c O-Gut! Lumajang — Menu ', 'background: #1d2327; color: #b8860b; font-size: 18px; font-weight: bold; padding: 6px 12px; border-radius: 4px;');
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tentang O-Gut! Lumajang — sejarah, filosofi, tim, dan perjalanan cafe industrial minimalis di jantung kota Lumajang.">
+  <meta name="keywords" content="tentang o-gut lumajang, sejarah cafe lumajang, tim o-gut">
+  <meta name="author" content="O-Gut! Lumajang">
+  <title>Tentang Kami — O-Gut! Lumajang</title>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    :root {
+      --wp-black: #1d2327;
+      --wp-dark: #2c3338;
+      --wp-gray: #50575e;
+      --wp-gray-light: #787c82;
+      --wp-light: #f6f7f7;
+      --wp-white: #ffffff;
+      --wp-border: #dcdcde;
+      --wp-border-light: #f0f0f1;
+      --wp-accent: #2271b1;
+      --wp-accent-hover: #135e96;
+      --wp-gold: #b8860b;
+      --wp-gold-light: #d4a017;
+
+      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-xxl: 6rem;
+
+      --container-max: 1200px;
+      --container-narrow: 860px;
+
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.3s ease;
+      --transition-slow: 0.5s ease;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+      --shadow-xl: 0 24px 48px rgba(0,0,0,0.16);
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--wp-gray);
+      background-color: var(--wp-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--wp-black);
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+    h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+    h4 { font-size: 1.2rem; }
+
+    p { margin-bottom: 1rem; }
+    a { color: var(--wp-accent); text-decoration: none; transition: color var(--transition-fast); }
+    a:hover { color: var(--wp-accent-hover); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul, ol { list-style: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ============================================================
+       UTILITY
+       ============================================================ */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .container-narrow {
+      max-width: var(--container-narrow);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .mb-0 { margin-bottom: 0; }
+    .mb-1 { margin-bottom: var(--space-sm); }
+    .mb-2 { margin-bottom: var(--space-md); }
+    .mb-3 { margin-bottom: var(--space-lg); }
+    .mt-0 { margin-top: 0; }
+    .mt-1 { margin-top: var(--space-sm); }
+    .mt-2 { margin-top: var(--space-md); }
+    .mt-3 { margin-top: var(--space-lg); }
+
+    .section { padding: var(--space-xxl) 0; }
+    .section-sm { padding: var(--space-xl) 0; }
+    .section-alt { background-color: var(--wp-light); }
+    .section-dark {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+    }
+    .section-dark h1,
+    .section-dark h2,
+    .section-dark h3,
+    .section-dark h4 { color: var(--wp-white); }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--wp-gold);
+      margin-bottom: var(--space-sm);
+    }
+    .section-title { margin-bottom: var(--space-sm); }
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--wp-gray);
+      max-width: 640px;
+      margin: 0 auto var(--space-lg);
+    }
+    .section-dark .section-subtitle { color: #a7aaad; }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--wp-gold);
+      margin: var(--space-md) auto;
+    }
+    .divider-left { margin-left: 0; }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      border-color: var(--wp-black);
+    }
+    .btn-primary:hover {
+      background-color: var(--wp-gold);
+      border-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--wp-black);
+      border-color: var(--wp-black);
+    }
+    .btn-outline:hover {
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+    }
+    .btn-outline-light {
+      background-color: transparent;
+      color: var(--wp-white);
+      border-color: var(--wp-white);
+    }
+    .btn-outline-light:hover {
+      background-color: var(--wp-white);
+      color: var(--wp-black);
+      transform: translateY(-2px);
+    }
+    .btn-gold {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      border-color: var(--wp-gold);
+    }
+    .btn-gold:hover {
+      background-color: var(--wp-gold-light);
+      border-color: var(--wp-gold-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.8rem; }
+    .btn-lg { padding: 1.1rem 2.6rem; font-size: 1rem; }
+
+    /* ============================================================
+       NAVBAR
+       ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--wp-border-light);
+      transition: all var(--transition-base);
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-sm); }
+    .navbar-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--wp-black);
+      letter-spacing: -0.02em;
+    }
+    .brand i { color: var(--wp-gold); font-size: 1.2rem; }
+    .brand span { color: var(--wp-gold); }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-menu a {
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--wp-gray);
+      letter-spacing: 0.01em;
+      padding: 0.5rem 0;
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--wp-gold);
+      transition: width var(--transition-base);
+    }
+    .nav-menu a:hover,
+    .nav-menu a.active { color: var(--wp-black); }
+    .nav-menu a:hover::after,
+    .nav-menu a.active::after { width: 100%; }
+    .nav-cta { margin-left: 1rem; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--wp-black);
+      padding: 0.5rem;
+    }
+
+    /* ============================================================
+       PAGE HEADER (Breadcrumb Hero)
+       ============================================================ */
+    .page-header {
+      position: relative;
+      padding: 160px 0 80px;
+      background: linear-gradient(135deg, #1d2327 0%, #2c3338 50%, #1d2327 100%);
+      overflow: hidden;
+      text-align: center;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(184,134,11,0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(34,113,177,0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .page-header-inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: #a7aaad;
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .breadcrumb a { color: #a7aaad; }
+    .breadcrumb a:hover { color: var(--wp-gold); }
+    .breadcrumb i { font-size: 0.6rem; color: var(--wp-gold); }
+    .page-header h1 {
+      color: var(--wp-white);
+      margin-bottom: var(--space-sm);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .page-header h1 span { color: var(--wp-gold); font-style: italic; }
+    .page-header p {
+      color: #a7aaad;
+      font-size: 1.1rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       STORY SECTION
+       ============================================================ */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .story-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #2c3338, #50575e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .story-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.4) 100%);
+    }
+    .story-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 2;
+      padding: 0.9rem 1.2rem;
+      background-color: var(--wp-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .story-badge i { font-size: 1.5rem; color: var(--wp-gold); }
+    .story-badge-text { display: flex; flex-direction: column; }
+    .story-badge-text strong { font-size: 1rem; color: var(--wp-black); }
+    .story-badge-text small { font-size: 0.72rem; color: var(--wp-gray); }
+    .story-content h2 { margin-bottom: var(--space-md); }
+    .story-content p {
+      color: var(--wp-gray);
+      font-size: 1.02rem;
+      margin-bottom: var(--space-md);
+    }
+    .story-quote {
+      margin: var(--space-lg) 0;
+      padding: 1.5rem 2rem;
+      background-color: var(--wp-light);
+      border-left: 3px solid var(--wp-gold);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--wp-black);
+      line-height: 1.6;
+    }
+    .story-quote i {
+      color: var(--wp-gold);
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    /* ============================================================
+       FILOSOFI / VALUES
+       ============================================================ */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .value-card {
+      position: relative;
+      background-color: var(--wp-white);
+      padding: 2.4rem 1.8rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--wp-border-light);
+      transition: all var(--transition-base);
+      overflow: hidden;
+    }
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: var(--wp-gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-base);
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .value-card:hover::before { transform: scaleX(1); }
+    .value-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-light);
+      color: var(--wp-gold);
+      border-radius: var(--radius-md);
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      transition: all var(--transition-base);
+    }
+    .value-card:hover .value-icon {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: rotate(-6deg);
+    }
+    .value-card h4 {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--wp-black);
+      margin-bottom: 0.6rem;
+    }
+    .value-card p {
+      font-size: 0.92rem;
+      color: var(--wp-gray);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ============================================================
+       TIMELINE
+       ============================================================ */
+    .timeline {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 1rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--wp-border);
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 0 2.5rem 2.5rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .timeline-item:nth-child(even) {
+      margin-left: 50%;
+      padding: 0 0 2.5rem 2.5rem;
+      text-align: left;
+    }
+    .timeline-item:nth-child(odd) {
+      text-align: right;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      background-color: var(--wp-white);
+      border: 3px solid var(--wp-gold);
+      border-radius: 50%;
+      z-index: 2;
+      transition: all var(--transition-base);
+    }
+    .timeline-item:nth-child(odd)::after { right: -8px; }
+    .timeline-item:nth-child(even)::after { left: -8px; }
+    .timeline-item:hover::after {
+      background-color: var(--wp-gold);
+      box-shadow: 0 0 0 6px rgba(184,134,11,0.15);
+    }
+    .timeline-year {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--wp-gold);
+      margin-bottom: 0.4rem;
+      line-height: 1;
+    }
+    .timeline-card {
+      background-color: var(--wp-white);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--wp-border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-base);
+    }
+    .timeline-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .timeline-card h4 {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--wp-black);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-card p {
+      font-size: 0.88rem;
+      color: var(--wp-gray);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ============================================================
+       TEAM
+       ============================================================ */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+    }
+    .team-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background-color: var(--wp-white);
+      border: 1px solid var(--wp-border-light);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-base);
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .team-avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1.2rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--wp-dark), var(--wp-gray));
+      color: var(--wp-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      position: relative;
+      transition: all var(--transition-base);
+    }
+    .team-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      transition: border-color var(--transition-base);
+    }
+    .team-card:hover .team-avatar::after {
+      border-color: var(--wp-gold);
+    }
+    .team-card h4 {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--wp-black);
+      margin-bottom: 0.3rem;
+    }
+    .team-role {
+      font-size: 0.82rem;
+      color: var(--wp-gold);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .team-card p {
+      font-size: 0.87rem;
+      color: var(--wp-gray-light);
+      line-height: 1.6;
+      margin: 0 0 1rem;
+    }
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .team-social a {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-light);
+      color: var(--wp-gray);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      transition: all var(--transition-base);
+    }
+    .team-social a:hover {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       GALERI
+       ============================================================ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1/1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: linear-gradient(135deg, #2c3338, #50575e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background var(--transition-base);
+    }
+    .gallery-item:hover::after {
+      background: rgba(184,134,11,0.2);
+    }
+    .gallery-item i {
+      position: relative;
+      z-index: 2;
+      font-size: 1.5rem;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all var(--transition-base);
+      color: var(--wp-white);
+    }
+    .gallery-item:hover i {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ============================================================
+       CTA SECTION
+       ============================================================ */
+    .cta-section {
+      position: relative;
+      padding: var(--space-xxl) 0;
+      background: linear-gradient(135deg, var(--wp-black) 0%, var(--wp-dark) 100%);
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(184,134,11,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .cta-content h2 {
+      color: var(--wp-white);
+      margin-bottom: var(--space-md);
+    }
+    .cta-content p {
+      color: #a7aaad;
+      font-size: 1.1rem;
+      margin-bottom: var(--space-lg);
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background-color: var(--wp-black);
+      color: #a7aaad;
+      padding: var(--space-xl) 0 var(--space-md);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    .footer-brand {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--wp-white);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-brand i { color: var(--wp-gold); }
+    .footer-brand span { color: var(--wp-gold); }
+    .footer-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: var(--space-md);
+      max-width: 320px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255,255,255,0.05);
+      color: #a7aaad;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+    }
+    .footer-social a:hover {
+      background-color: var(--wp-gold);
+      color: var(--wp-white);
+      transform: translateY(-2px);
+    }
+    .footer-column h5 {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--wp-white);
+      margin-bottom: var(--space-md);
+    }
+    .footer-column ul li { margin-bottom: 0.6rem; }
+    .footer-column ul li a {
+      font-size: 0.9rem;
+      color: #a7aaad;
+      transition: color var(--transition-fast);
+    }
+    .footer-column ul li a:hover { color: var(--wp-gold); }
+    .footer-contact-item {
+      display: flex;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .footer-contact-item i {
+      color: var(--wp-gold);
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+    .footer-bottom {
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+    }
+    .footer-bottom a { color: var(--wp-gold); }
+
+    /* ============================================================
+       SCROLL TO TOP
+       ============================================================ */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--wp-black);
+      color: var(--wp-white);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all var(--transition-base);
+      z-index: 999;
+    }
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-top:hover {
+      background-color: var(--wp-gold);
+      transform: translateY(-4px);
+    }
+
+    /* ============================================================
+       ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 992px) {
+      .story-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .story-image { aspect-ratio: 16/10; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+      .gallery-item:nth-child(4) { grid-column: span 2; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background-color: var(--wp-white);
+        border-bottom: 1px solid var(--wp-border);
+        padding: 1rem 0;
+        transform: translateY(-150%);
+        transition: transform var(--transition-base);
+        box-shadow: var(--shadow-md);
+      }
+      .nav-menu.open { transform: translateY(0); }
+      .nav-menu a { padding: 0.9rem 1.5rem; }
+      .nav-menu a::after { display: none; }
+      .nav-cta { margin: 0.5rem 1.5rem 0; }
+      .nav-toggle { display: block; }
+      .page-header { padding: 130px 0 60px; }
+      .timeline::before { left: 20px; }
+      .timeline-item,
+      .timeline-item:nth-child(even),
+      .timeline-item:nth-child(odd) {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 0 2rem 3.5rem;
+        text-align: left;
+      }
+      .timeline-item:nth-child(odd)::after,
+      .timeline-item:nth-child(even)::after { left: 12px; right: auto; }
+      .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .footer-desc { max-width: 100%; }
+      .scroll-top { bottom: 1rem; right: 1rem; }
+      .section { padding: var(--space-xl) 0; }
+      .story-quote { padding: 1.2rem 1.4rem; font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .cta-actions { flex-direction: column; }
+      .cta-actions .btn { width: 100%; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(4) { grid-column: span 1; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="brand">
+        <i class="fa-solid fa-mug-hot"></i>
+        O-<span>Gut!</span>
+      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html" class="active">Tentang</a>
+        <a href="menu.html">Menu</a>
+        <a href="index.html#fasilitas">Fasilitas</a>
+        <a href="index.html#testimoni">Testimoni</a>
+        <a href="kontak.html" class="btn btn-primary btn-sm nav-cta">
+          <i class="fa-solid fa-arrow-right"></i> Reservasi
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       PAGE HEADER
+       ============================================================ -->
+  <section class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Tentang</span>
+      </div>
+      <h1>Tentang <span>O-Gut!</span> Lumajang</h1>
+      <p>Perjalanan kami menghadirkan ruang ngopi yang hangat, nyaman, dan bermakna di jantung kota Lumajang.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STORY SECTION
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image fade-in-left">
+          <i class="fa-solid fa-image" style="font-size: 3rem;"></i>
+          <div class="story-badge">
+            <i class="fa-solid fa-seedling"></i>
+            <div class="story-badge-text">
+              <strong>Berdiri 2020</strong>
+              <small>Di tengah pandemi</small>
+            </div>
+          </div>
+        </div>
+        <div class="story-content fade-in-right">
+          <span class="section-label">Cerita Kami</span>
+          <h2>Berawal dari Kecintaan<br>pada Kopi & Ruang</h2>
+          <div class="divider divider-left"></div>
+          <p>
+            O-Gut! lahir dari sebuah keyakinan sederhana: bahwa secangkir kopi yang baik layak dinikmati di ruang yang sama baiknya. Kami memulai perjalanan ini pada tahun 2020, di tengah masa yang penuh tantangan, dengan misi menghadirkan ruang ketiga — bukan rumah, bukan kantor, tapi tempat di mana siapa pun bisa merasa diterima.
+          </p>
+          <p>
+            Kami memilih konsep industrial yang dipadukan dengan sentuhan vintage dan dominasi warna putih minimalis. Bukan sekadar tren, tapi filosofi: ruang yang jujur, apa adanya, namun tetap elegan. Tanaman hidup di setiap sudut menjadi pengingat bahwa di balik beton dan baja, selalu ada kehidupan yang tumbuh.
+          </p>
+          <div class="story-quote">
+            <i class="fa-solid fa-quote-left"></i>
+            Kami tidak hanya menjual kopi. Kami menyediakan ruang untuk berpikir, berkarya, dan bertemu.
+          </div>
+          <p>
+            Hingga hari ini, O-Gut! telah menjadi saksi ribuan percakapan, ide-ide yang lahir, dan persahabatan yang tumbuh. Dan kami akan terus di sini — menjadi bagian dari cerita kota Lumajang.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FILOSOFI / VALUES
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">Filosofi Kami</span>
+        <h2 class="section-title">Nilai yang Kami Pegang</h2>
+        <p class="section-subtitle">
+          Tiga pilar yang menjadi fondasi setiap keputusan dan pelayanan kami.
+        </p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <div class="value-icon">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <h4>Kualitas Tanpa Kompromi</h4>
+          <p>
+            Setiap biji kopi dipilih dengan teliti. Setiap hidangan disiapkan dengan standar yang sama tingginya. Kami percaya kualitas adalah bentuk rasa hormat kami kepada Anda.
+          </p>
+        </div>
+        <div class="value-card fade-in delay-1">
+          <div class="value-icon">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <h4>Ruang yang Hangat</h4>
+          <p>
+            Kami merancang setiap sudut untuk membuat Anda betah. Dari pencahayaan, musik, hingga tanaman hijau — semuanya dirancang untuk kenyamanan Anda.
+          </p>
+        </div>
+        <div class="value-card fade-in delay-2">
+          <div class="value-icon">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h4>Komunitas yang Tumbuh</h4>
+          <p>
+            O-Gut! bukan sekadar cafe. Kami ingin menjadi rumah bagi komunitas — tempat ide bertemu, kolaborasi lahir, dan persahabatan tumbuh.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TIMELINE
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">Perjalanan</span>
+        <h2 class="section-title">Jejak Langkah Kami</h2>
+        <p class="section-subtitle">
+          Dari sebuah ruangan kecil hingga menjadi bagian dari kota Lumajang.
+        </p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-card">
+            <h4>Awal Mula</h4>
+            <p>O-Gut! dibuka pertama kali di Jl. Jendral Haryono No.44 dengan konsep awal yang sederhana.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2021</div>
+          <div class="timeline-card">
+            <h4>Renovasi Konsep</h4>
+            <p>Transformasi desain interior ke arah industrial minimalis dengan sentuhan vintage dan tanaman hidup.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-card">
+            <h4>Menu Signature</h4>
+            <p>Peluncuran menu andalan seperti Es Kopi Regal dan Ice Banana Ogut yang hingga kini menjadi favorit.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-card">
+            <h4>Live Music & Komunitas</h4>
+            <p>Mulai mengadakan live music malam minggu dan menjadi tempat berkumpul komunitas lokal Lumajang.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-card">
+            <h4>Objek Penelitian</h4>
+            <p>O-Gut! menjadi objek penelitian akademis tentang pengaruh suasana, pelayanan, dan harga terhadap minat beli.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-card">
+            <h4>Terus Bertumbuh</h4>
+            <p>Melanjutkan komitmen menjadi ruang ketiga terbaik di Lumajang bagi siapa pun yang datang.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TEAM
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">Tim Kami</span>
+        <h2 class="section-title">Orang-Orang di Balik O-Gut!</h2>
+        <p class="section-subtitle">
+          Tim yang berdedikasi menghadirkan pengalaman terbaik untuk Anda.
+        </p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <div class="team-avatar">A</div>
+          <h4>Andi Wijaya</h4>
+          <div class="team-role">Founder</div>
+          <p>Pencetus ide O-Gut! dan penjaga visi ruang ketiga di Lumajang.</p>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="team-card fade-in delay-1">
+          <div class="team-avatar">S</div>
+          <h4>Sari Puspita</h4>
+          <div class="team-role">Head Barista</div>
+          <p>Bertanggung jawab atas kualitas setiap cangkir kopi yang tersaji.</p>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="team-card fade-in delay-2">
+          <div class="team-avatar">R</div>
+          <h4>Rizky Hidayat</h4>
+          <div class="team-role">Head Chef</div>
+          <p>Merancang menu makanan yang lezat dan konsisten setiap hari.</p>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="team-card fade-in delay-3">
+          <div class="team-avatar">N</div>
+          <h4>Nadia Putri</h4>
+          <div class="team-role">Manager</div>
+          <p>Memastikan operasional harian berjalan lancar dan pelayanan optimal.</p>
+          <div class="team-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERI
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label">Galeri</span>
+        <h2 class="section-title">Sudut-Sudut O-Gut!</h2>
+        <p class="section-subtitle">
+          Sekilas suasana yang menanti Anda saat berkunjung.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <span>Interior Utama</span>
+          <i class="fa-solid fa-expand"></i>
+        </div>
+        <div class="gallery-item fade-in delay-1">
+          <span>Area Outdoor</span>
+          <i class="fa-solid fa-expand"></i>
+        </div>
+        <div class="gallery-item fade-in delay-2">
+          <span>Kopi Signature</span>
+          <i class="fa-solid fa-expand"></i>
+        </div>
+        <div class="gallery-item fade-in delay-3">
+          <span>Suasana Malam</span>
+          <i class="fa-solid fa-expand"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content fade-in">
+        <span class="section-label" style="color: var(--wp-gold-light);">Mari Berkunjung</span>
+        <h2>Jadilah Bagian dari Cerita Kami</h2>
+        <p>
+          Kami percaya setiap cangkir kopi punya cerita. Datang dan buat cerita Anda sendiri di O-Gut! Lumajang.
+        </p>
+        <div class="cta-actions">
+          <a href="kontak.html" class="btn btn-gold btn-lg">
+            <i class="fa-solid fa-location-dot"></i> Kunjungi Kami
+          </a>
+          <a href="menu.html" class="btn btn-outline-light btn-lg">
+            <i class="fa-solid fa-utensils"></i> Lihat Menu
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <i class="fa-solid fa-mug-hot"></i>
+            O-<span>Gut!</span>
+          </div>
+          <p class="footer-desc">
+            Cafe industrial minimalis di jantung kota Lumajang. Tempat sempurna untuk nongkrong, bekerja, atau melepas penat.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h5>Navigasi</h5>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang.html">Tentang</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5>Layanan</h5>
+          <ul>
+            <li><a href="#">Reservasi Meja</a></li>
+            <li><a href="#">Pesan Antar</a></li>
+            <li><a href="#">Event & Gathering</a></li>
+            <li><a href="#">Live Music</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5>Kontak</h5>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Jl. Jendral Haryono No.44, Jogotrunan, Kec. Lumajang, Jawa Timur</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>0812-1787-321</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Setiap hari, 10.00 – 22.30 WIB</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2025 <strong>O-Gut! Lumajang</strong>. All rights reserved.</div>
+        <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--wp-gold);"></i> di Lumajang</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL TO TOP
+       ============================================================ -->
+  <a href="#" class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT (INTERNAL)
+       ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ========== NAVBAR SCROLL EFFECT ========== */
+      var navbar = document.getElementById('navbar');
+      var scrollTopBtn = document.getElementById('scrollTop');
+
+      function handleScroll() {
+        if (navbar) {
+          navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }
+        if (scrollTopBtn) {
+          scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+        }
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+
+      /* ========== MOBILE MENU TOGGLE ========== */
+      var navToggle = document.getElementById('navToggle');
+      var navMenu = document.getElementById('navMenu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+          navMenu.classList.toggle('open');
+          var icon = navToggle.querySelector('i');
+          if (icon) {
+            icon.className = navMenu.classList.contains('open')
+              ? 'fa-solid fa-xmark'
+              : 'fa-solid fa-bars';
+          }
+        });
+
+        navMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            navMenu.classList.remove('open');
+            var icon = navToggle.querySelector('i');
+            if (icon) icon.className = 'fa-solid fa-bars';
+          });
+        });
+      }
+
+      /* ========== SMOOTH SCROLL ========== */
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var targetId = this.getAttribute('href');
+          if (targetId === '#' || targetId.length < 2) return;
+          var target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            var offset = 76;
+            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+      /* ========== INTERSECTION OBSERVER FADE-IN ========== */
+      var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        animatedElements.forEach(function (el) { observer.observe(el); });
+      } else {
+        animatedElements.forEach(function (el) { el.classList.add('visible'); });
+      }
+
+      /* ========== TIMELINE ANIMATION ========== */
+      var timelineItems = document.querySelectorAll('.timeline-item');
+      if ('IntersectionObserver' in window) {
+        var timelineObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              timelineObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        timelineItems.forEach(function (item) { timelineObserver.observe(item); });
+      } else {
+        timelineItems.forEach(function (item) { item.classList.add('visible'); });
+      }
+
+      /* ========== CONSOLE BRANDING ========== */
+      console.log('%c O-Gut! Lumajang — Tentang ', 'background: #1d2327; color: #b8860b; font-size: 18px; font-weight: bold; padding: 6px 12px; border-radius: 4px;');
+    })();
+  </script>
+</body>
+</html>
